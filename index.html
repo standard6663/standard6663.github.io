@@ -173,18 +173,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>24和19略过</p>
-<p>#面试题 02.07. 链表相交</p>
-<font size=5>
->[题目链接](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)
-</font>
-
+<h1 id="面试题-02-07-链表相交"><a href="#面试题-02-07-链表相交" class="headerlink" title="面试题 02.07. 链表相交"></a>面试题 02.07. 链表相交</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a></p>
+</blockquote>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题重点是求出两个链表的长度差，长的向短的对齐，为了方便操作，把curA设置成长的，对齐之后一一对比</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ListNode* curA = headA;</span><br><span class="line">        ListNode* curB = headB;</span><br><span class="line">        int lenA = 0, lenB = 0;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            lenA++;</span><br><span class="line">            curA=curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curB!=NULL)&#123;</span><br><span class="line">            lenB++;</span><br><span class="line">            curB=curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curA = headA;</span><br><span class="line">        curB = headB;</span><br><span class="line">        // 让curA为最长链表的头，lenA为其长度</span><br><span class="line">        if (lenB &gt; lenA) &#123;</span><br><span class="line">            swap (lenA, lenB);</span><br><span class="line">            swap (curA, curB);</span><br><span class="line">        &#125;</span><br><span class="line">        // 求长度差</span><br><span class="line">        int gap = lenA - lenB;</span><br><span class="line">        // 让curA和curB在同一起点上（末尾位置对齐）</span><br><span class="line">        while (gap--) &#123;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            if(curA==curB) return curA;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br></pre></td></tr></table></figure>
-<h1 id="142环形链表2"><a href="#142环形链表2" class="headerlink" title="142环形链表2"></a>142环形链表2</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)
->[视频链接](https://www.bilibili.com/video/BV1if4y1d7ob/)
-</font>
-
+<h1 id="142环形链表2"><a href="#142环形链表2" class="headerlink" title="142环形链表2"></a>142环形链表2</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1if4y1d7ob/">视频链接</a></p>
+</blockquote>
 <h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>有两个问题</p>
 <ul>
 <li>怎么判断有环</li>
@@ -267,25 +263,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="203-移除链表元素"><a href="#203-移除链表元素" class="headerlink" title="203.移除链表元素"></a>203.移除链表元素</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/remove-linked-list-elements/)
->[视频链接](https://www.bilibili.com/video/BV18B4y1s7R9/)
-</font>
-
+        <h1 id="203-移除链表元素"><a href="#203-移除链表元素" class="headerlink" title="203.移除链表元素"></a>203.移除链表元素</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18B4y1s7R9/">视频链接</a></p>
+</blockquote>
 <p>加头节点同一判断，没啥好说的</p>
-<h1 id="707-设计链表"><a href="#707-设计链表" class="headerlink" title="707.设计链表"></a>707.设计链表</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/design-linked-list/)
->[视频链接](https://www.bilibili.com/video/BV1FU4y1X7WD/)
-</font>
-
+<h1 id="707-设计链表"><a href="#707-设计链表" class="headerlink" title="707.设计链表"></a>707.设计链表</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FU4y1X7WD/">视频链接</a></p>
+</blockquote>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>链表的基本操作,代码如下，就是addAtIndex条件多一点稍微特殊一点</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">class MyLinkedList &#123;</span><br><span class="line">public:</span><br><span class="line">    struct LinkNode&#123;</span><br><span class="line">        int val;</span><br><span class="line">        LinkNode* next;</span><br><span class="line">        LinkNode(int val): val(val),next(NULL)&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    int size;</span><br><span class="line">    LinkNode* dummy;</span><br><span class="line">    MyLinkedList() &#123;</span><br><span class="line">        size=0;</span><br><span class="line">        dummy =new LinkNode(0);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int get(int index) &#123;</span><br><span class="line">        if(index&gt;=size||index&lt;0) return -1;</span><br><span class="line">        LinkNode* cur=dummy-&gt;next;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        return cur-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtHead(int val) &#123;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        LinkNode* tmp=dummy-&gt;next;</span><br><span class="line">        dummy-&gt;next=node;</span><br><span class="line">        node-&gt;next=tmp;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtTail(int val) &#123;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        int num=size;</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(num&gt;0)&#123;</span><br><span class="line">            num--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;//指向尾部</span><br><span class="line">        cur-&gt;next=node;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtIndex(int index, int val) &#123;</span><br><span class="line">        if(index&gt;size) return;</span><br><span class="line">        if(index&lt;0) size=0;//就这里错了，=size的时候插入到尾部，用get检查报错</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        LinkNode* tmp=cur-&gt;next;</span><br><span class="line">        cur-&gt;next=node;</span><br><span class="line">        node-&gt;next=tmp;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void deleteAtIndex(int index) &#123;</span><br><span class="line">        if(get(index)==-1) return;</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkNode* tmp=cur-&gt;next;</span><br><span class="line">        cur-&gt;next=tmp-&gt;next;</span><br><span class="line">        delete tmp;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206.反转链表"></a>206.反转链表</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/reverse-linked-list/)
->[视频链接](https://www.bilibili.com/video/BV1nB4y1i7eL/)
-</font>
-
+<h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206.反转链表"></a>206.反转链表</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nB4y1i7eL/">视频链接</a></p>
+</blockquote>
 <p>双指针顺着链表操作</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ListNode* tmp; // 保存cur的下一个节点</span><br><span class="line">        ListNode* cur = head;</span><br><span class="line">        ListNode* pre = NULL;</span><br><span class="line">        while(cur!=NULL)&#123;</span><br><span class="line">            tmp=cur-&gt;next;</span><br><span class="line">            cur-&gt;next=pre;</span><br><span class="line">            pre=cur;</span><br><span class="line">            cur=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        return pre;</span><br></pre></td></tr></table></figure>
 
@@ -350,30 +340,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/squares-of-a-sorted-array/)
->[视频链接](https://www.bilibili.com/video/BV1QB4y1D7ep)
-</font>
-
+        <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QB4y1D7ep">视频链接</a></p>
+</blockquote>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>暴力就是排序的复杂度O(nlogn)<br>看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间<br>那么我们把两个指针放在一前一后，哪个大就把结果放到新开辟的数组最后<br>代码如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; ans=nums;</span><br><span class="line">        int length=nums.size()-1;</span><br><span class="line">        while(l&lt;=r)&#123;</span><br><span class="line">            if( (long long)nums[r]*nums[r] &gt; (long long)nums[l]*nums[l] )&#123;</span><br><span class="line">                ans[length--]=(long long)nums[r]*nums[r];</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                ans[length--]=nums[l]*nums[l];</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br></pre></td></tr></table></figure>
 
-<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a>209.长度最小的子数组</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/minimum-size-subarray-sum/)
->[视频链接](https://www.bilibili.com/video/BV1tZ4y1q7XE)
-</font>
-
+<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a>209.长度最小的子数组</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tZ4y1q7XE">视频链接</a></p>
+</blockquote>
 <h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>暴力解法就是两个for循环，然后不断的寻找符合条件的子序列</p>
 <p>题目要求线性复杂度，那么只能有一个for循环，卡哥讲的滑动窗口法重点就是循环的索引，一定是表示 滑动窗口的终止位置，当终止位置固定的时候，前面的位置向后移动值才会越来越小。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for (int j = 0; j &lt; nums.size(); j++)&#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">            while(sum&gt;=target)&#123;</span><br><span class="line">                sublen=j-i+1;</span><br><span class="line">                result=min(result,sublen);</span><br><span class="line">                sum-=nums[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>i往前移动，不满足则跳出继续移动尾部。</p>
-<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/spiral-matrix-ii/)
->[视频链接](https://www.bilibili.com/video/BV1SL4y1N7mV/)
-</font>
-## 重点
-
-<p>一道纯模拟题，卡哥说的循环不变量很重要，我们保证左闭右开，访问一圈走4行。<br>重要的是确定变量。一个变量确定一圈的开始位置，count赋值，走完一圈范围会变小，要控制边界，使用offset控制边界。</p>
+<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SL4y1N7mV/">视频链接</a></p>
+</blockquote>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>一道纯模拟题，卡哥说的循环不变量很重要，我们保证左闭右开，访问一圈走4行。<br>重要的是确定变量。一个变量确定一圈的开始位置，count赋值，走完一圈范围会变小，要控制边界，使用offset控制边界。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; res(n, vector&lt;int&gt;(n, 0));</span><br><span class="line">        int count=1;//赋值</span><br><span class="line">        int loop=n/2;</span><br><span class="line">        int x=0,y=0;</span><br><span class="line">        int offset=1;</span><br><span class="line">        while(loop--)&#123;</span><br><span class="line">            int i=x;</span><br><span class="line">            int j=y;</span><br><span class="line">            for(;j&lt;n-offset;j++)&#123;</span><br><span class="line">                res[i][j]=count++;</span><br><span class="line">            &#125;</span><br><span class="line">            for(;i&lt;n-offset;i++) res[i][j]=count++;</span><br><span class="line">            for(;j&gt;y;j--) res[i][j]=count++;</span><br><span class="line">            for(;i&gt;x;i--) res[i][j]=count++;</span><br><span class="line">            x++;</span><br><span class="line">            y++;</span><br><span class="line">            offset++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(n%2==1) res[n/2][n/2]=count;</span><br><span class="line">        return res;</span><br></pre></td></tr></table></figure>
 
       
@@ -459,11 +442,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="LeetCode704-二分查找"><a href="#LeetCode704-二分查找" class="headerlink" title="LeetCode704.二分查找"></a>LeetCode704.二分查找</h1><font size=5>
-> [题目链接](https://leetcode.cn/problems/binary-search/)
-> [视频链接](https://www.bilibili.com/video/BV1fA4y1o715/)
-</font>
-
+        <h1 id="LeetCode704-二分查找"><a href="#LeetCode704-二分查找" class="headerlink" title="LeetCode704.二分查找"></a>LeetCode704.二分查找</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fA4y1o715/">视频链接</a></p>
+</blockquote>
 <h2 id="二分查找重点分析"><a href="#二分查找重点分析" class="headerlink" title="二分查找重点分析"></a>二分查找重点分析</h2><ul>
 <li>左闭右闭[left , right]</li>
 <li>左闭右开[left , right）</li>
@@ -483,11 +464,9 @@
 <li>不相等的时候，两边的边界都是有意义的，而且已经确定是不符合条件的，所以left&#x3D;mid+1,right&#x3D;mid-1</li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>卡哥讲的循环不变量很重要，写代码的时候记得什么变什么不变，一直两种选一种写。</p>
-<h1 id="LeetCode27-移除元素"><a href="#LeetCode27-移除元素" class="headerlink" title="LeetCode27. 移除元素"></a>LeetCode27. 移除元素</h1><font size=5>
->[题目链接](https://https://leetcode.cn/problems/remove-element/)
->[视频链接](https://www.bilibili.com/video/BV12A4y1Z7LP/)
-</font>
-
+<h1 id="LeetCode27-移除元素"><a href="#LeetCode27-移除元素" class="headerlink" title="LeetCode27. 移除元素"></a>LeetCode27. 移除元素</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://https//leetcode.cn/problems/remove-element/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12A4y1Z7LP/">视频链接</a></p>
+</blockquote>
 <p>暴力解法就是相等之后，把后面的都移动复杂度O(n^2)<br>双指针法就是一个读指针和一个写指针，相等就一起移动，不相等把读指针的值赋给写指针</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int fastIndex=0;</span><br><span class="line">        int showIndex=0;</span><br><span class="line">        for(fastIndex=0;fastIndex&lt;nums.size();fastIndex++)&#123;</span><br><span class="line">            if(nums[fastIndex]!=val)&#123;</span><br><span class="line">                nums[showIndex]=nums[fastIndex];</span><br><span class="line">                showIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return showIndex;</span><br></pre></td></tr></table></figure>
 <p>慢指针就是写指针，最后慢指针指向数组最后，是新数组的长度</p>

@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>第二天977.有序数组的平方 ，209.长度最小的子数组 ，59.螺旋矩阵II | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="977.有序数组的平方 &gt;[题目链接](https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;squares-of-a-sorted-array&#x2F;) &gt;[视频链接](https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QB4y1D7ep)   重点暴力就是排序的复杂度O(nlogn)看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间那么我们把两个指针">
+  <meta name="description" content="977.有序数组的平方 题目链接视频链接  重点暴力就是排序的复杂度O(nlogn)看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间那么我们把两个指针放在一前一后，哪个大就把结果放到新开辟的数组最后代码如下： 12345678910111213vector&lt;int&gt; ans&#x3D;nums;        int length&#x3D;nums.size()-1;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二天977.有序数组的平方 ，209.长度最小的子数组 ，59.螺旋矩阵II">
 <meta property="og:url" content="http://example.com/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="977.有序数组的平方 &gt;[题目链接](https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;squares-of-a-sorted-array&#x2F;) &gt;[视频链接](https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1QB4y1D7ep)   重点暴力就是排序的复杂度O(nlogn)看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间那么我们把两个指针">
+<meta property="og:description" content="977.有序数组的平方 题目链接视频链接  重点暴力就是排序的复杂度O(nlogn)看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间那么我们把两个指针放在一前一后，哪个大就把结果放到新开辟的数组最后代码如下： 12345678910111213vector&lt;int&gt; ans&#x3D;nums;        int length&#x3D;nums.size()-1;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-29T15:18:48.000Z">
-<meta property="article:modified_time" content="2023-12-02T06:23:03.548Z">
+<meta property="article:modified_time" content="2023-12-03T10:56:15.363Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Markdown">
 <meta name="twitter:card" content="summary">
@@ -175,30 +175,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/squares-of-a-sorted-array/)
->[视频链接](https://www.bilibili.com/video/BV1QB4y1D7ep)
-</font>
-
+        <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QB4y1D7ep">视频链接</a></p>
+</blockquote>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>暴力就是排序的复杂度O(nlogn)<br>看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间<br>那么我们把两个指针放在一前一后，哪个大就把结果放到新开辟的数组最后<br>代码如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; ans=nums;</span><br><span class="line">        int length=nums.size()-1;</span><br><span class="line">        while(l&lt;=r)&#123;</span><br><span class="line">            if( (long long)nums[r]*nums[r] &gt; (long long)nums[l]*nums[l] )&#123;</span><br><span class="line">                ans[length--]=(long long)nums[r]*nums[r];</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                ans[length--]=nums[l]*nums[l];</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br></pre></td></tr></table></figure>
 
-<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a>209.长度最小的子数组</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/minimum-size-subarray-sum/)
->[视频链接](https://www.bilibili.com/video/BV1tZ4y1q7XE)
-</font>
-
+<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a>209.长度最小的子数组</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tZ4y1q7XE">视频链接</a></p>
+</blockquote>
 <h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>暴力解法就是两个for循环，然后不断的寻找符合条件的子序列</p>
 <p>题目要求线性复杂度，那么只能有一个for循环，卡哥讲的滑动窗口法重点就是循环的索引，一定是表示 滑动窗口的终止位置，当终止位置固定的时候，前面的位置向后移动值才会越来越小。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for (int j = 0; j &lt; nums.size(); j++)&#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">            while(sum&gt;=target)&#123;</span><br><span class="line">                sublen=j-i+1;</span><br><span class="line">                result=min(result,sublen);</span><br><span class="line">                sum-=nums[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>i往前移动，不满足则跳出继续移动尾部。</p>
-<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h1><font size=5>
->[题目链接](https://leetcode.cn/problems/spiral-matrix-ii/)
->[视频链接](https://www.bilibili.com/video/BV1SL4y1N7mV/)
-</font>
-## 重点
-
-<p>一道纯模拟题，卡哥说的循环不变量很重要，我们保证左闭右开，访问一圈走4行。<br>重要的是确定变量。一个变量确定一圈的开始位置，count赋值，走完一圈范围会变小，要控制边界，使用offset控制边界。</p>
+<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SL4y1N7mV/">视频链接</a></p>
+</blockquote>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>一道纯模拟题，卡哥说的循环不变量很重要，我们保证左闭右开，访问一圈走4行。<br>重要的是确定变量。一个变量确定一圈的开始位置，count赋值，走完一圈范围会变小，要控制边界，使用offset控制边界。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; res(n, vector&lt;int&gt;(n, 0));</span><br><span class="line">        int count=1;//赋值</span><br><span class="line">        int loop=n/2;</span><br><span class="line">        int x=0,y=0;</span><br><span class="line">        int offset=1;</span><br><span class="line">        while(loop--)&#123;</span><br><span class="line">            int i=x;</span><br><span class="line">            int j=y;</span><br><span class="line">            for(;j&lt;n-offset;j++)&#123;</span><br><span class="line">                res[i][j]=count++;</span><br><span class="line">            &#125;</span><br><span class="line">            for(;i&lt;n-offset;i++) res[i][j]=count++;</span><br><span class="line">            for(;j&gt;y;j--) res[i][j]=count++;</span><br><span class="line">            for(;i&gt;x;i--) res[i][j]=count++;</span><br><span class="line">            x++;</span><br><span class="line">            y++;</span><br><span class="line">            offset++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(n%2==1) res[n/2][n/2]=count;</span><br><span class="line">        return res;</span><br></pre></td></tr></table></figure>
 
       
