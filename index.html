@@ -159,7 +159,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">第四天242有效的字母异位词</a>
+      <a class="article-title" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">第五天242有效的字母异位词，349. 两个数组的交集，第202题. 快乐数，1. 两数之和</a>
     </h1>
   
 
@@ -172,7 +172,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="242两个数组的交集"><a href="#242两个数组的交集" class="headerlink" title="242两个数组的交集"></a>242两个数组的交集</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YG411p7BA/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-anagram/">题目链接</a></p>
+        <h1 id="242有效的字母异位词"><a href="#242有效的字母异位词" class="headerlink" title="242有效的字母异位词"></a>242有效的字母异位词</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YG411p7BA/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-anagram/">题目链接</a></p>
 <h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>题目中保证了小写字母，只有26种选择，比较适合使用数组做哈希表</p>
 <p>代码如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int hash[26]=&#123;0&#125;;</span><br><span class="line">        for(int i=0;i&lt;s.size();i++)&#123;</span><br><span class="line">            hash[s[i]-&#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;t.size();i++)&#123;</span><br><span class="line">            hash[t[i]-&#x27;a&#x27;]--;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;26;i++)&#123;</span><br><span class="line">            if(hash[i]!=0) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br></pre></td></tr></table></figure>
