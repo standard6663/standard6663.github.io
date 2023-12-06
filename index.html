@@ -152,6 +152,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2023-12-06T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="344反转字符串1"><a href="#344反转字符串1" class="headerlink" title="344反转字符串1"></a>344反转字符串1</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fV4y17748/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>类似双指针，用一个tmp暂存数据，双指针交换</p>
+<h1 id="541反转字符串2"><a href="#541反转字符串2" class="headerlink" title="541反转字符串2"></a>541反转字符串2</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dT411j7NN/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>和前面一道题类似，只要判断size是不是大于k就行</p>
+<h1 id="54替换数字"><a href="#54替换数字" class="headerlink" title="54替换数字"></a>54替换数字</h1><p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1064">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>数清楚有多少个数字然后进行扩展，本题还是一个双指针，从后往前赋值，避免多次移动这样可以保证O(n)的复杂度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">    string s;</span><br><span class="line">    while(cin&gt;&gt;s)&#123;</span><br><span class="line">        int count=0;</span><br><span class="line">        int oldsize=s.size();</span><br><span class="line">        for(int i=0;i&lt;s.size();i++)</span><br><span class="line">            if(s[i] &gt;= &#x27;0&#x27; &amp;&amp; s[i] &lt;= &#x27;9&#x27;)count++;</span><br><span class="line">        s.resize(s.size()+count*5);</span><br><span class="line">        for(int j=s.size()-1,i=oldsize-1;j&gt;i;j--,i--)&#123;</span><br><span class="line">            if(s[i] &gt;=&#x27;a&#x27;&amp;&amp;s[i]&lt;=&#x27;z&#x27;) s[j]=s[i];</span><br><span class="line">            else&#123;</span><br><span class="line">                s[j--]=&#x27;r&#x27;;</span><br><span class="line">                s[j--]=&#x27;e&#x27;;</span><br><span class="line">                s[j--]=&#x27;b&#x27;;</span><br><span class="line">                s[j--]=&#x27;m&#x27;;</span><br><span class="line">                s[j--]=&#x27;u&#x27;;</span><br><span class="line">                s[j]=&#x27;n&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; s &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="151-翻转字符串里的单词"><a href="#151-翻转字符串里的单词" class="headerlink" title="151.翻转字符串里的单词"></a>151.翻转字符串里的单词</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-words-in-a-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dT411j7NN/">视频链接</a></p>
+<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>这个题目分成3步做</p>
+<ul>
+<li>翻转整个字符串</li>
+<li>删除多余的空格</li>
+<li>翻转每个单词（可以调用第一步的函数）</li>
+</ul>
+<p>第一步之前就已经实现过了，这里重点在第二步，如何删除多余空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void reverseAll(string&amp; s, int start, int end)&#123;</span><br><span class="line">        if(start &lt; 0) start = 0;</span><br><span class="line">        if(end &gt;= s.length()) end = s.length() - 1;</span><br><span class="line">        while(end&gt;start)&#123;</span><br><span class="line">            char tmp=s[start];</span><br><span class="line">            s[start++]=s[end];</span><br><span class="line">            s[end--]=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    string reverseWords(string s) &#123;</span><br><span class="line">        reverseAll(s,0, s.size()-1);</span><br><span class="line">        int fastIndex=0,slowIndex=0;</span><br><span class="line">        while(s[fastIndex]==&#x27; &#x27;) fastIndex++;//前面的空格</span><br><span class="line">        for(;fastIndex&lt;s.size();fastIndex++)&#123;</span><br><span class="line">            if(fastIndex&gt;1&amp;&amp;s[fastIndex]==&#x27; &#x27;&amp;&amp;s[fastIndex-1]==&#x27; &#x27;) continue;</span><br><span class="line">            else s[slowIndex++]=s[fastIndex];</span><br><span class="line">        &#125;</span><br><span class="line">        if(slowIndex&gt;1&amp;&amp;s[slowIndex-1]==&#x27; &#x27;) s.resize(slowIndex-1);</span><br><span class="line">        else s.resize(slowIndex);</span><br><span class="line">        int start=0;</span><br><span class="line">        for(int i=0;i&lt;=s.size();i++)&#123;</span><br><span class="line">            if(s[i]==&#x27; &#x27;||i==s.size())&#123;</span><br><span class="line">                reverseAll(s,start,i-1);</span><br><span class="line">                start=i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="55右选择字符串"><a href="#55右选择字符串" class="headerlink" title="55右选择字符串"></a>55右选择字符串</h1><p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1065">题目链接</a></p>
+<h2 id="重点-4"><a href="#重点-4" class="headerlink" title="重点"></a>重点</h2><p>不开辟额外空间的话，可以左边逆转一次，右边逆转一次然后总体再转一次</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int n;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    int len = s.size(); //获取长度</span><br><span class="line"></span><br><span class="line">    reverse(s.begin(), s.end()); // 整体反转</span><br><span class="line">    reverse(s.begin(), s.begin() + n); // 先反转前一段，长度n</span><br><span class="line">    reverse(s.begin() + n, s.end()); // 再反转后一段</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第六天454四树相加，383赎金信，15三数之和，18四数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

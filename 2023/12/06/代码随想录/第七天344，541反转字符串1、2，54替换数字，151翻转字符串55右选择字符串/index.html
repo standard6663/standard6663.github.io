@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://standard6663.github.io.git">
-  <title>Archives: 2023 | Hexo</title>
+  <title>第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://standard6663.github.io.git/archives/2023/index.html">
+  <meta name="description" content="344反转字符串1题目链接视频链接 重点类似双指针，用一个tmp暂存数据，双指针交换 541反转字符串2题目链接视频链接 重点和前面一道题类似，只要判断size是不是大于k就行 54替换数字题目链接 重点数清楚有多少个数字然后进行扩展，本题还是一个双指针，从后往前赋值，避免多次移动这样可以保证O(n)的复杂度 123456789101112131415161718192021222324#incl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串">
+<meta property="og:url" content="https://standard6663.github.io.git/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="344反转字符串1题目链接视频链接 重点类似双指针，用一个tmp暂存数据，双指针交换 541反转字符串2题目链接视频链接 重点和前面一道题类似，只要判断size是不是大于k就行 54替换数字题目链接 重点数清楚有多少个数字然后进行扩展，本题还是一个双指针，从后往前赋值，避免多次移动这样可以保证O(n)的复杂度 123456789101112131415161718192021222324#incl">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-06T04:25:56.000Z">
+<meta property="article:modified_time" content="2023-12-06T05:40:24.215Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,309 +154,173 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-代码随想录/第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+
+        
+        <a href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
   	<time datetime="2023-12-06T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="344反转字符串1"><a href="#344反转字符串1" class="headerlink" title="344反转字符串1"></a>344反转字符串1</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fV4y17748/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>类似双指针，用一个tmp暂存数据，双指针交换</p>
+<h1 id="541反转字符串2"><a href="#541反转字符串2" class="headerlink" title="541反转字符串2"></a>541反转字符串2</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dT411j7NN/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>和前面一道题类似，只要判断size是不是大于k就行</p>
+<h1 id="54替换数字"><a href="#54替换数字" class="headerlink" title="54替换数字"></a>54替换数字</h1><p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1064">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>数清楚有多少个数字然后进行扩展，本题还是一个双指针，从后往前赋值，避免多次移动这样可以保证O(n)的复杂度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main()&#123;</span><br><span class="line">    string s;</span><br><span class="line">    while(cin&gt;&gt;s)&#123;</span><br><span class="line">        int count=0;</span><br><span class="line">        int oldsize=s.size();</span><br><span class="line">        for(int i=0;i&lt;s.size();i++)</span><br><span class="line">            if(s[i] &gt;= &#x27;0&#x27; &amp;&amp; s[i] &lt;= &#x27;9&#x27;)count++;</span><br><span class="line">        s.resize(s.size()+count*5);</span><br><span class="line">        for(int j=s.size()-1,i=oldsize-1;j&gt;i;j--,i--)&#123;</span><br><span class="line">            if(s[i] &gt;=&#x27;a&#x27;&amp;&amp;s[i]&lt;=&#x27;z&#x27;) s[j]=s[i];</span><br><span class="line">            else&#123;</span><br><span class="line">                s[j--]=&#x27;r&#x27;;</span><br><span class="line">                s[j--]=&#x27;e&#x27;;</span><br><span class="line">                s[j--]=&#x27;b&#x27;;</span><br><span class="line">                s[j--]=&#x27;m&#x27;;</span><br><span class="line">                s[j--]=&#x27;u&#x27;;</span><br><span class="line">                s[j]=&#x27;n&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; s &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="151-翻转字符串里的单词"><a href="#151-翻转字符串里的单词" class="headerlink" title="151.翻转字符串里的单词"></a>151.翻转字符串里的单词</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-words-in-a-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1dT411j7NN/">视频链接</a></p>
+<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>这个题目分成3步做</p>
+<ul>
+<li>翻转整个字符串</li>
+<li>删除多余的空格</li>
+<li>翻转每个单词（可以调用第一步的函数）</li>
+</ul>
+<p>第一步之前就已经实现过了，这里重点在第二步，如何删除多余空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void reverseAll(string&amp; s, int start, int end)&#123;</span><br><span class="line">        if(start &lt; 0) start = 0;</span><br><span class="line">        if(end &gt;= s.length()) end = s.length() - 1;</span><br><span class="line">        while(end&gt;start)&#123;</span><br><span class="line">            char tmp=s[start];</span><br><span class="line">            s[start++]=s[end];</span><br><span class="line">            s[end--]=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    string reverseWords(string s) &#123;</span><br><span class="line">        reverseAll(s,0, s.size()-1);</span><br><span class="line">        int fastIndex=0,slowIndex=0;</span><br><span class="line">        while(s[fastIndex]==&#x27; &#x27;) fastIndex++;//前面的空格</span><br><span class="line">        for(;fastIndex&lt;s.size();fastIndex++)&#123;</span><br><span class="line">            if(fastIndex&gt;1&amp;&amp;s[fastIndex]==&#x27; &#x27;&amp;&amp;s[fastIndex-1]==&#x27; &#x27;) continue;</span><br><span class="line">            else s[slowIndex++]=s[fastIndex];</span><br><span class="line">        &#125;</span><br><span class="line">        if(slowIndex&gt;1&amp;&amp;s[slowIndex-1]==&#x27; &#x27;) s.resize(slowIndex-1);</span><br><span class="line">        else s.resize(slowIndex);</span><br><span class="line">        int start=0;</span><br><span class="line">        for(int i=0;i&lt;=s.size();i++)&#123;</span><br><span class="line">            if(s[i]==&#x27; &#x27;||i==s.size())&#123;</span><br><span class="line">                reverseAll(s,start,i-1);</span><br><span class="line">                start=i+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="55右选择字符串"><a href="#55右选择字符串" class="headerlink" title="55右选择字符串"></a>55右选择字符串</h1><p><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1065">题目链接</a></p>
+<h2 id="重点-4"><a href="#重点-4" class="headerlink" title="重点"></a>重点</h2><p>不开辟额外空间的话，可以左边逆转一次，右边逆转一次然后总体再转一次</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int n;</span><br><span class="line">    string s;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    int len = s.size(); //获取长度</span><br><span class="line"></span><br><span class="line">    reverse(s.begin(), s.end()); // 整体反转</span><br><span class="line">    reverse(s.begin(), s.begin() + n); // 先反转前一段，长度n</span><br><span class="line">    reverse(s.begin() + n, s.end()); // 再反转后一段</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; s &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://standard6663.github.io.git/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-05T05:01:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第六天454四树相加，383赎金信，15三数之和，18四数之和</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">第六天454四树相加，383赎金信，15三数之和，18四数之和</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-03T12:10:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">第五天242有效的字母异位词，349. 两个数组的交集，第202题. 快乐数，1. 两数之和</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/" class="archive-article-date">
-  	<time datetime="2023-12-02T08:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">第四天24，19，面试题02.07链表相交，142环形链表2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2023-12-02T07:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">第三天203.移除链表元素，707.设计链表，206.反转链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/" class="archive-article-date">
-  	<time datetime="2023-11-29T15:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">第二天977.有序数组的平方 ，209.长度最小的子数组 ，59.螺旋矩阵II</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2023-11-29T05:42:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">第一天 704. 二分查找、27. 移除元素</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/%E7%AC%AC%E4%B8%80%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2023-11-26T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/%E7%AC%AC%E4%B8%80%E7%AF%87/">第一篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/hello-world/" class="archive-article-date">
-  	<time datetime="2023-11-26T09:30:18.785Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -475,8 +343,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
