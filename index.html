@@ -152,6 +152,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第12天二叉树的各种遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/">第12天二叉树的各种遍历</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/" class="archive-article-date">
+  	<time datetime="2023-12-12T04:08:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a>递归遍历</h1><h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>递归的写法遵循三部曲</p>
+<ol>
+<li><p>确定递归函数的参数和返回值： 确定哪些参数是递归的过程中需要处理的，那么就在递归函数里加上这个参数， 并且还要明确每次递归的返回值是什么进而确定递归函数的返回类型。</p>
+</li>
+<li><p>确定终止条件： 写完了递归算法, 运行的时候，经常会遇到栈溢出的错误，就是没写终止条件或者终止条件写的不对，操作系统也是用一个栈的结构来保存每一层递归的信息，如果递归没有终止，操作系统的内存栈必然就会溢出。</p>
+</li>
+<li><p>确定单层递归的逻辑： 确定每一层递归需要处理的信息。在这里也就会重复调用自己来实现递归的过程。</p>
+</li>
+</ol>
+<p>递归的写法遵循三部曲一般就能写出来。<br>以前序为例子</p>
+<ol>
+<li>确定递归函数的参数和返回值<br>  需要遍历所有的节点，返回值为空；需要传入头节点和记录答案的数组<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec)</span><br></pre></td></tr></table></figure></li>
+<li>确定终止条件<br>  当前遍历的节点是空结束<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (cur == NULL) return;</span><br></pre></td></tr></table></figure></li>
+<li>确定单层递归的逻辑<br> 前序需要先遍历中，然后左右<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec.push_back(cur-&gt;val);    // 中</span><br><span class="line">traversal(cur-&gt;left, vec);  // 左</span><br><span class="line">traversal(cur-&gt;right, vec); // 右</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>#一般迭代法<br>以中序为例，先访问的是二叉树顶部的节点，然后一层一层向下访问，直到到达树左面的最底部，再开始处理节点（也就是在把节点的数值放进result数组中），这就造成了处理顺序和访问顺序是不一致的。</p>
+<p>那么我们要先往最左边访问，从栈访问弹出的元素，再压入右节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;TreeNode*&gt; st;</span><br><span class="line">        vector&lt;int&gt; result;</span><br><span class="line">        TreeNode* cur=root;</span><br><span class="line">        while(!st.empty()||cur!=NULL)&#123;</span><br><span class="line">            if(cur!=NULL)&#123;</span><br><span class="line">                st.push(cur);</span><br><span class="line">                cur=cur-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                cur=st.top();</span><br><span class="line">                st.pop();</span><br><span class="line">                result.push_back(cur-&gt;val);</span><br><span class="line">                cur=cur-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="统一迭代法"><a href="#统一迭代法" class="headerlink" title="统一迭代法"></a>统一迭代法</h1><p>使用统一迭代法，以中序为例<br>我们用栈模拟，先输出的要后入栈</p>
+<p>添加中节点之后要添加空节点，碰到空节点才将下一个节点放进结果集。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; result;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        if (root != NULL) st.push(root);</span><br><span class="line">        while (!st.empty()) &#123;</span><br><span class="line">            TreeNode* node = st.top();</span><br><span class="line">            if (node != NULL) &#123;</span><br><span class="line">                st.pop(); // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中</span><br><span class="line">                if (node-&gt;right) st.push(node-&gt;right);  // 添加右节点（空节点不入栈）</span><br><span class="line"></span><br><span class="line">                st.push(node);                          // 添加中节点</span><br><span class="line">                st.push(NULL); // 中节点访问过，但是还没有处理，加入空节点做为标记。</span><br><span class="line"></span><br><span class="line">                if (node-&gt;left) st.push(node-&gt;left);    // 添加左节点（空节点不入栈）</span><br><span class="line">            &#125; else &#123; // 只有遇到空节点的时候，才将下一个节点放进结果集</span><br><span class="line">                st.pop();           // 将空节点弹出</span><br><span class="line">                node = st.top();    // 重新取出栈中元素</span><br><span class="line">                st.pop();</span><br><span class="line">                result.push_back(node-&gt;val); // 加入到结果集</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第11天230滑动窗口最大值，347前K个高频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -848,108 +932,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第二天977-有序数组的平方-，209-长度最小的子数组-，59-螺旋矩阵II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">第二天977.有序数组的平方 ，209.长度最小的子数组 ，59.螺旋矩阵II</a>
-    </h1>
-  
-
-        
-        <a href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/" class="archive-article-date">
-  	<time datetime="2023-11-29T15:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977.有序数组的平方"></a>977.有序数组的平方</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QB4y1D7ep">视频链接</a></p>
-</blockquote>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>暴力就是排序的复杂度O(nlogn)<br>看了解答后发现组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间<br>那么我们把两个指针放在一前一后，哪个大就把结果放到新开辟的数组最后<br>代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; ans=nums;</span><br><span class="line">        int length=nums.size()-1;</span><br><span class="line">        while(l&lt;=r)&#123;</span><br><span class="line">            if( (long long)nums[r]*nums[r] &gt; (long long)nums[l]*nums[l] )&#123;</span><br><span class="line">                ans[length--]=(long long)nums[r]*nums[r];</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                ans[length--]=nums[l]*nums[l];</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br></pre></td></tr></table></figure>
-
-<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209.长度最小的子数组"></a>209.长度最小的子数组</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tZ4y1q7XE">视频链接</a></p>
-</blockquote>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>暴力解法就是两个for循环，然后不断的寻找符合条件的子序列</p>
-<p>题目要求线性复杂度，那么只能有一个for循环，卡哥讲的滑动窗口法重点就是循环的索引，一定是表示 滑动窗口的终止位置，当终止位置固定的时候，前面的位置向后移动值才会越来越小。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for (int j = 0; j &lt; nums.size(); j++)&#123;</span><br><span class="line">            sum+=nums[j];</span><br><span class="line">            while(sum&gt;=target)&#123;</span><br><span class="line">                sublen=j-i+1;</span><br><span class="line">                result=min(result,sublen);</span><br><span class="line">                sum-=nums[i++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>i往前移动，不满足则跳出继续移动尾部。</p>
-<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59. 螺旋矩阵 II"></a>59. 螺旋矩阵 II</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SL4y1N7mV/">视频链接</a></p>
-</blockquote>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>一道纯模拟题，卡哥说的循环不变量很重要，我们保证左闭右开，访问一圈走4行。<br>重要的是确定变量。一个变量确定一圈的开始位置，count赋值，走完一圈范围会变小，要控制边界，使用offset控制边界。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; res(n, vector&lt;int&gt;(n, 0));</span><br><span class="line">        int count=1;//赋值</span><br><span class="line">        int loop=n/2;</span><br><span class="line">        int x=0,y=0;</span><br><span class="line">        int offset=1;</span><br><span class="line">        while(loop--)&#123;</span><br><span class="line">            int i=x;</span><br><span class="line">            int j=y;</span><br><span class="line">            for(;j&lt;n-offset;j++)&#123;</span><br><span class="line">                res[i][j]=count++;</span><br><span class="line">            &#125;</span><br><span class="line">            for(;i&lt;n-offset;i++) res[i][j]=count++;</span><br><span class="line">            for(;j&gt;y;j--) res[i][j]=count++;</span><br><span class="line">            for(;i&gt;x;i--) res[i][j]=count++;</span><br><span class="line">            x++;</span><br><span class="line">            y++;</span><br><span class="line">            offset++;</span><br><span class="line">        &#125;</span><br><span class="line">        if(n%2==1) res[n/2][n/2]=count;</span><br><span class="line">        return res;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">展开全文 >></a>
         </p>
       
 
