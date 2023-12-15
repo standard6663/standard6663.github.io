@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://standard6663.github.io.git">
-  <title>Archives: 2023/12 | Hexo</title>
+  <title>第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://standard6663.github.io.git/archives/2023/12/index.html">
+  <meta name="description" content="110平衡二叉树视频链接题目链接 重点要求比较高度，必然是要后序遍历特殊的是如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了所以单层处理是这样的 12345if(node&#x3D;&#x3D;NULL) return 0;int lefthight&#x3D;getHight(node-&gt;left);if(lefthight&#x3D;&#x3D;-1) return -1;int righthight&#x3D;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和">
+<meta property="og:url" content="https://standard6663.github.io.git/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="110平衡二叉树视频链接题目链接 重点要求比较高度，必然是要后序遍历特殊的是如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了所以单层处理是这样的 12345if(node&#x3D;&#x3D;NULL) return 0;int lefthight&#x3D;getHight(node-&gt;left);if(lefthight&#x3D;&#x3D;-1) return -1;int righthight&#x3D;g">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-15T10:20:56.000Z">
+<meta property="article:modified_time" content="2023-12-15T12:14:24.220Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,295 +154,169 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-代码随想录/第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/" class="archive-article-date">
+
+        
+        <a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/" class="archive-article-date">
   	<time datetime="2023-12-15T10:20:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/">第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="110平衡二叉树"><a href="#110平衡二叉树" class="headerlink" title="110平衡二叉树"></a>110平衡二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ug411S7my">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>要求比较高度，必然是要后序遍历<br>特殊的是如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了<br>所以单层处理是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(node==NULL) return 0;</span><br><span class="line">int lefthight=getHight(node-&gt;left);</span><br><span class="line">if(lefthight==-1) return -1;</span><br><span class="line">int righthight=getHight(node-&gt;right);</span><br><span class="line">if(righthight==-1) return -1;</span><br></pre></td></tr></table></figure>
+<p>整体代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int getHight(TreeNode* node)&#123;</span><br><span class="line">        if(node==NULL) return 0;</span><br><span class="line">        int lefthight=getHight(node-&gt;left);</span><br><span class="line">        if(lefthight==-1) return -1;</span><br><span class="line">        int righthight=getHight(node-&gt;right);</span><br><span class="line">        if(righthight==-1) return -1;</span><br><span class="line">        int result;</span><br><span class="line">        if(abs(lefthight-righthight)&gt;1) result=-1;</span><br><span class="line">        else&#123;</span><br><span class="line">            </span><br><span class="line">            result = 1 + max(lefthight, righthight);</span><br><span class="line">        &#125;</span><br><span class="line">        //cout&lt;&lt;&quot;node= &quot;&lt;&lt;node-&gt;val&lt;&lt;&quot; result= &quot;&lt;&lt; result;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    bool isBalanced(TreeNode* root) &#123;</span><br><span class="line">        return getHight(root) == -1 ? false : true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="257二叉树的所有路径"><a href="#257二叉树的所有路径" class="headerlink" title="257二叉树的所有路径"></a>257二叉树的所有路径</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZG411G7Dh/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-paths/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题要跟节点在子节点前面，适合前序遍历<br>而且本题在遍历到叶子节点的时候，就要进行处理了，把处理结果取出来<br>所以终止条件是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (cur-&gt;left == NULL &amp;&amp; cur-&gt;right == NULL)&#123;</span><br><span class="line">            string res;</span><br><span class="line">            for(int i=0;i&lt;path.size()-1;i++)&#123;</span><br><span class="line">                res+=to_string(path[i]);</span><br><span class="line">                res+=&quot;-&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            res+=to_string(path[path.size()-1]);</span><br><span class="line">            result.push_back(res);</span><br><span class="line">            </span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>单层处理的时候，要回溯，不能一直加节点<br>整体代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void traversal(TreeNode* cur, vector&lt;int&gt;&amp; path, vector&lt;string&gt;&amp; result)&#123;</span><br><span class="line">        //前序遍历</span><br><span class="line">        path.push_back(cur-&gt;val);</span><br><span class="line">        if (cur-&gt;left == NULL &amp;&amp; cur-&gt;right == NULL)&#123;</span><br><span class="line">            string res;</span><br><span class="line">            for(int i=0;i&lt;path.size()-1;i++)&#123;</span><br><span class="line">                res+=to_string(path[i]);</span><br><span class="line">                res+=&quot;-&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            res+=to_string(path[path.size()-1]);</span><br><span class="line">            result.push_back(res);</span><br><span class="line">            </span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(cur-&gt;left)&#123;</span><br><span class="line">            traversal(cur-&gt;left,path,result);</span><br><span class="line">            path.pop_back();//记得回溯，不能一直加节点</span><br><span class="line">        &#125;</span><br><span class="line">        if(cur-&gt;right) &#123;</span><br><span class="line">            traversal(cur-&gt;right,path,result);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;string&gt; binaryTreePaths(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        if(root==NULL) return result;</span><br><span class="line">        traversal(root,path,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="404左叶子之和"><a href="#404左叶子之和" class="headerlink" title="404左叶子之和"></a>404左叶子之和</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GY4y1K7z8/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-left-leaves/">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>重点是左叶子的判断：节点A的左孩子不为空，且左孩子的左右孩子都为空（说明是叶子节点），那么A节点的左孩子为左叶子节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (node-&gt;left != NULL &amp;&amp; node-&gt;left-&gt;left == NULL &amp;&amp; node-&gt;left-&gt;right == NULL) &#123;</span><br><span class="line">    左叶子节点处理逻辑</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以用层序做，很好想</p>
+<p>本题特殊在只能在父节点判断左孩子是不是左叶子，父节点就要处理左孩子是不是，是的话就是左孩子的值加上下面两个子节点的左叶子值。不是就返回两个子节点的左叶子值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(root==NULL) return 0;</span><br><span class="line">        int leftsum=sumOfLeftLeaves(root-&gt;left);</span><br><span class="line">        int rightsum=sumOfLeftLeaves(root-&gt;right);</span><br><span class="line">        int sum=leftsum+rightsum;</span><br><span class="line">        if (root-&gt;left != NULL &amp;&amp; root-&gt;left-&gt;left == NULL &amp;&amp; root-&gt;left-&gt;right == NULL) &#123;</span><br><span class="line">            sum+=root-&gt;left-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">        return sum;</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
-
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://standard6663.github.io.git/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2023-12-14T02:59:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第14天104.二叉树的最大深度559.n叉树的最大深度111.二叉树的最小深度，222.完全二叉树的节点个数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">第14天104.二叉树的最大深度559.n叉树的最大深度111.二叉树的最小深度，222.完全二叉树的节点个数</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2023-12-13T02:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">第13天层序遍历，226翻转二叉树，101对称二叉树</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/" class="archive-article-date">
-  	<time datetime="2023-12-12T04:08:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/">第12天二叉树的各种遍历</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC11%E5%A4%A9230%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%EF%BC%8C347%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91/" class="archive-article-date">
-  	<time datetime="2023-12-11T02:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC11%E5%A4%A9230%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%EF%BC%8C347%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91/">第11天230滑动窗口最大值，347前K个高频</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC10%E5%A4%A920%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%8C1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9%EF%BC%8C150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/" class="archive-article-date">
-  	<time datetime="2023-12-09T03:46:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC10%E5%A4%A920%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%8C1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9%EF%BC%8C150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/">第10天20有效括号，1047. 删除字符串中的所有相邻重复项，150. 逆波兰表达式求值</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B9%9D%E5%A4%A9232%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%8C225%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2023-12-08T03:55:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B9%9D%E5%A4%A9232%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%8C225%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">第九天232用栈实现队列，225用队列实现栈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AB%E5%A4%A928%E5%AE%9E%E7%8E%B0strstr%EF%BC%8C459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2023-12-07T02:56:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AB%E5%A4%A928%E5%AE%9E%E7%8E%B0strstr%EF%BC%8C459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">第八天28实现strstr，459.重复的子字符串</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2023-12-06T04:25:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-05T05:01:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">第六天454四树相加，383赎金信，15三数之和，18四数之和</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2023/12/page/2/">2</a><a class="extend next" rel="next" href="/archives/2023/12/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -462,8 +340,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
