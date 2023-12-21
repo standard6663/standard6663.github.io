@@ -152,6 +152,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第10天20有效括号，1047-删除字符串中的所有相邻重复项，150-逆波兰表达式求值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC10%E5%A4%A920%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%8C1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9%EF%BC%8C150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/">第10天20有效括号，1047. 删除字符串中的所有相邻重复项，150. 逆波兰表达式求值</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC10%E5%A4%A920%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%8C1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9%EF%BC%8C150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2023-12-09T03:46:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#20有效括号</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-parentheses">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AF411w78g/">视频链接</a></p>
+<h1 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h1><p>栈的经典应用，做匹配，左括号直接入栈，右括号在非空的情况下查看与栈顶是否匹配，匹配直接出栈。</p>
+<p>#1047. 删除字符串中的所有相邻重复项</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12a411P7mw/">视频链接</a></p>
+<h1 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h1><p>和上一题其实是一样的，多一个更改输出顺序，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;char&gt; mystack;</span><br><span class="line">       for(int i=0;i&lt;s.size();i++)&#123;</span><br><span class="line">           if(mystack.empty() || mystack.top()!=s[i]) &#123;</span><br><span class="line">               mystack.push(s[i]);</span><br><span class="line">               //cout&lt;&lt;s[i];</span><br><span class="line">           &#125;</span><br><span class="line">           else if(mystack.top()==s[i]) mystack.pop();</span><br><span class="line">       &#125;</span><br><span class="line">       stack&lt;char&gt; mystack2;</span><br><span class="line">       int len=mystack.size();</span><br><span class="line">       for(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">           char ans=mystack.top();</span><br><span class="line">           cout&lt;&lt;ans;</span><br><span class="line">           mystack.pop();</span><br><span class="line">           mystack2.push(ans);</span><br><span class="line">       &#125;</span><br><span class="line">       string answer;</span><br><span class="line">       len=mystack2.size();</span><br><span class="line">       for(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">           answer+=mystack2.top();</span><br><span class="line">           mystack2.pop();</span><br><span class="line">       &#125;</span><br><span class="line">       return answer;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>#150. 逆波兰表达式求值</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kd4y1o7on/">视频链接</a></p>
+<h1 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h1><p>逆波兰表达式是一种后缀表达式，碰到数字直接入栈，碰到符号弹出两个数字做运算，结果入栈</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;long long&gt; st; </span><br><span class="line">       for(int i=0;i&lt;tokens.size();i++)&#123;</span><br><span class="line">           if (tokens[i] == &quot;+&quot; || tokens[i] == &quot;-&quot; || tokens[i] == &quot;*&quot; ||</span><br><span class="line">           tokens[i] == &quot;/&quot;)&#123;</span><br><span class="line">               long long num1=st.top();</span><br><span class="line">               st.pop();</span><br><span class="line">               long long num2=st.top();</span><br><span class="line">               st.pop();</span><br><span class="line">               if (tokens[i] == &quot;+&quot;) st.push(num2 + num1);</span><br><span class="line">               if (tokens[i] == &quot;-&quot;) st.push(num2 - num1);</span><br><span class="line">               if (tokens[i] == &quot;*&quot;) st.push(num2 * num1);</span><br><span class="line">               if (tokens[i] == &quot;/&quot;) st.push(num2 / num1);</span><br><span class="line">           &#125;</span><br><span class="line">           else st.push(stoll(tokens[i]));</span><br><span class="line">       &#125;</span><br><span class="line">       return st.top();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC10%E5%A4%A920%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7%EF%BC%8C1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9%EF%BC%8C150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第九天232用栈实现队列，225用队列实现栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -912,69 +985,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一篇博客/第一篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/%E7%AC%AC%E4%B8%80%E7%AF%87/">第一篇</a>
-    </h1>
-  
-
-        
-        <a href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/%E7%AC%AC%E4%B8%80%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2023-11-26T10:07:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>测试用例</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/11/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/%E7%AC%AC%E4%B8%80%E7%AF%87/">展开全文 >></a>
         </p>
       
 
