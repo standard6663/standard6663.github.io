@@ -152,6 +152,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第16天513找树左下角的值-112路径总和-113-路径总和2-106从中序与后序遍历序列构造二叉树-105从前序与中序遍历序列构造二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC16%E5%A4%A9513%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC-112%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C2-106%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91-105%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">第16天513找树左下角的值 112路径总和 113.路径总和2 106从中序与后序遍历序列构造二叉树 105从前序与中序遍历序列构造二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC16%E5%A4%A9513%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC-112%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C2-106%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91-105%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2023-12-16T07:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#513 找树左下角的值<br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-bottom-left-tree-value/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1424y1Z7pn/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>这题很适合层序，模板提。说一下递归法。<br>首先要保证是最大深度的节点，所以要一个int型的变量用来记录最长深度，</p>
+<p>怎么保证是左边的呢？只要保证左节点在前面处理，那同层之间结果就是最左边。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int res;</span><br><span class="line">    int maxDepth = INT_MIN;</span><br><span class="line">    void traversal(TreeNode* root, int depth)&#123;</span><br><span class="line">        if(!root-&gt;left&amp;&amp;!root-&gt;right)&#123;</span><br><span class="line">            if(depth&gt;maxDepth) &#123;</span><br><span class="line">            maxDepth=depth;</span><br><span class="line">            res=root-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;left)&#123;</span><br><span class="line">            traversal(root-&gt;left,depth+1);</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;right) traversal(root-&gt;right,depth+1);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    int findBottomLeftValue(TreeNode* root) &#123;</span><br><span class="line">        if(root==NULL) return 0;</span><br><span class="line">        traversal(root,0);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="112路径总和"><a href="#112路径总和" class="headerlink" title="112路径总和"></a>112路径总和</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19t4y1L7CR/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题终止条件可以这样弄，递减，让计数器count初始为目标和，压入节点就减，为0则返回真，否则到叶子节点返回假</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (!cur-&gt;left &amp;&amp; !cur-&gt;right &amp;&amp; count == 0) return true; // 遇到叶子节点，并且计数为0</span><br><span class="line">if (!cur-&gt;left &amp;&amp; !cur-&gt;right) return false; // 遇到叶子节点而没有找到合适的边，直接返回</span><br></pre></td></tr></table></figure>
+
+<p>本题返回值为Bool，递归函数有返回值，当左节点返回true了应该继续向上面返回</p>
+<p>总体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">bool travel(TreeNode* root,int targetSum)&#123;</span><br><span class="line">        if(!root-&gt;left&amp;&amp;!root-&gt;right&amp;&amp;targetSum==0) return true;</span><br><span class="line">        if (!root-&gt;left &amp;&amp; !root-&gt;right) return false;</span><br><span class="line"></span><br><span class="line">        if(root-&gt;left)&#123;</span><br><span class="line">            if(travel(root-&gt;left,targetSum-root-&gt;left-&gt;val)) return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;right)&#123;</span><br><span class="line">            if(travel(root-&gt;right,targetSum-root-&gt;right-&gt;val)) return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    bool hasPathSum(TreeNode* root, int targetSum) &#123;</span><br><span class="line">        if(root==NULL) return false;</span><br><span class="line">        return travel(root,targetSum-root-&gt;val);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="113路径总和2"><a href="#113路径总和2" class="headerlink" title="113路径总和2"></a>113路径总和2</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum/">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>这个题要访问整个树，返回值为空，其它的和上面是一样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">if(!root-&gt;left&amp;&amp;!root-&gt;right&amp;&amp;targetSum==0)&#123;</span><br><span class="line">           res.push_back(path);</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">       if(!root-&gt;left&amp;&amp;!root-&gt;right) return;</span><br><span class="line">       if(root-&gt;left)&#123;</span><br><span class="line">           path.push_back(root-&gt;left-&gt;val);</span><br><span class="line">           travel(root-&gt;left,targetSum-root-&gt;left-&gt;val,path,res);</span><br><span class="line">           path.pop_back();</span><br><span class="line">       &#125;</span><br><span class="line">       if(root-&gt;right)&#123;</span><br><span class="line">           path.push_back(root-&gt;right-&gt;val);</span><br><span class="line">           travel(root-&gt;right,targetSum-root-&gt;right-&gt;val,path,res);</span><br><span class="line">           path.pop_back();</span><br><span class="line">       &#125;</span><br><span class="line">       return;</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int targetSum) &#123;</span><br><span class="line">       vector&lt;int&gt; path;</span><br><span class="line">       vector&lt;vector&lt;int&gt;&gt; res;</span><br><span class="line">       if(!root) return res;</span><br><span class="line">       path.push_back(root-&gt;val); // 把根节点放进路径</span><br><span class="line">       travel(root,targetSum-root-&gt;val,path,res);</span><br><span class="line">       return res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>#106从中序与后序遍历序列构造二叉树<br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vW4y1i7dn/">视频链接</a></p>
+<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>后序遍历最后一个是中节点，数组为空则说明是空节点了，为1则为叶子节点，返回节点。<br>找到后序遍历最后一个中节点，切割后序遍历和中序遍历递归处理左区间和右区间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* traversal (vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder)&#123;</span><br><span class="line">       if(postorder.size()==0) return NULL;</span><br><span class="line">       </span><br><span class="line">       int rootval = postorder[postorder.size() - 1];</span><br><span class="line">       TreeNode* root=new TreeNode(rootval);</span><br><span class="line">       </span><br><span class="line">       if(postorder.size()==1) return root;//根节点</span><br><span class="line"></span><br><span class="line">       int delIndex;</span><br><span class="line">       for(delIndex=0;delIndex&lt;inorder.size()-1;delIndex++)</span><br><span class="line">           if(inorder[delIndex]==rootval) break;</span><br><span class="line">       //左闭右开，切割</span><br><span class="line"></span><br><span class="line">       vector&lt;int&gt; leftInorder(inorder.begin(),inorder.begin()+delIndex);</span><br><span class="line">       vector&lt;int&gt; rightInorder(inorder.begin()+delIndex+1,inorder.end());</span><br><span class="line"></span><br><span class="line">       postorder.resize(postorder.size() - 1);</span><br><span class="line">       vector&lt;int&gt; leftPostorder(postorder.begin(),postorder.begin()+leftInorder.size());</span><br><span class="line">       vector&lt;int&gt; rightPostorder(postorder.begin()+leftInorder.size(),</span><br><span class="line">       postorder.end());</span><br><span class="line"></span><br><span class="line">       root-&gt;left=traversal(leftInorder,leftPostorder);</span><br><span class="line">       root-&gt;right=traversal(rightInorder,rightPostorder);</span><br><span class="line"></span><br><span class="line">       return root;</span><br><span class="line">   &#125;</span><br><span class="line">   TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">       if (inorder.size() == 0 || postorder.size() == 0) return NULL;</span><br><span class="line">       return traversal(inorder, postorder);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC16%E5%A4%A9513%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC-112%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C2-106%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91-105%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -816,95 +898,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%83%E5%A4%A9344%EF%BC%8C541%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B21%E3%80%812%EF%BC%8C54%E6%9B%BF%E6%8D%A2%E6%95%B0%E5%AD%97%EF%BC%8C151%E7%BF%BB%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B255%E5%8F%B3%E9%80%89%E6%8B%A9%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第六天454四树相加，383赎金信，15三数之和，18四数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">第六天454四树相加，383赎金信，15三数之和，18四数之和</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-05T05:01:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="454四树相加2"><a href="#454四树相加2" class="headerlink" title="454四树相加2"></a>454四树相加2</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Md4y1Q7Yh/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>这个题目是4个独立的数组，不用考虑去重的问题，适合用哈希法<br>要统计符合条件的答案，把四个数组分成两组，一组记录a+b的情况，key记录a+b的值，value记录a+b出现的次数，另一组遍历c+d看符合的情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">unordered_map&lt;int,int&gt; ans;</span><br><span class="line">        for(int a:nums1)</span><br><span class="line">            for(int b:nums2)&#123;</span><br><span class="line">                ans[a+b]++;</span><br><span class="line">            &#125;</span><br><span class="line">        int count=0;</span><br><span class="line">        for(int c:nums3)</span><br><span class="line">            for(int d:nums4)&#123;</span><br><span class="line">                if(ans.find(0-c-d)!=ans.end()) count+=ans[0-c-d];</span><br><span class="line">            &#125;</span><br><span class="line">        return count;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="383-赎金信"><a href="#383-赎金信" class="headerlink" title="383. 赎金信"></a>383. 赎金信</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Md4y1Q7Yh/">视频链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>这个题目说了只有小写字母，查找magazine里面的字母是否都是大于等于ransomnote<br>适合用数组做哈希表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int num1[26]=&#123;0&#125;;</span><br><span class="line">        int num2[26]=&#123;0&#125;;</span><br><span class="line">        for(char c:ransomNote) num1[c-&#x27;a&#x27;]++;</span><br><span class="line">        for(char c:magazine) num2[c-&#x27;a&#x27;]++;</span><br><span class="line">        for(int i=0;i&lt;26;i++)&#123;</span><br><span class="line">            if(num2[i]&lt;num1[i]) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br></pre></td></tr></table></figure>
-
-<h1 id="15三数之和"><a href="#15三数之和" class="headerlink" title="15三数之和"></a>15三数之和</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GW4y127qo/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>排序后找到a,b,c三个数字和为0<br>两层for循环就可以确定 a 和b 的数值了，可以使用哈希法来确定 0-(a+b) 是否在 数组里出现过，把符合条件的三元组放进vector中，然后再去重，这样是非常费时的，很容易超时。</p>
-<p>这个题目适合双指针法</p>
-<p>首先确定a，双指针指向后面的一前一后，前后移动找到符合条件的三元组</p>
-<p>还是有去重的问题，<strong>首先是a的去重</strong></p>
-<p>是判断 nums[i] 与 nums[i + 1]是否相同，还是判断 nums[i] 与 nums[i-1] 是否相同</p>
-<p>第一种</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (nums[i] == nums[i + 1]) &#123; // 去重操作</span><br><span class="line">    continue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二种</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) &#123;</span><br><span class="line">    continue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两种是有区别的，第一种会漏掉同一元组中相同的元素。看 {-1, -1 ,2} 这组数据，当遍历到 第一个 -1 的时候，只要前一位没有-1，那么 {-1, -1 ,2} 这组数据一样可以收录到 结果集里。</p>
-<p><strong>b与c的去重</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result.push_back(&#123;nums[i], nums[left], nums[right]&#125;);</span><br><span class="line">while(right&gt;1&amp;&amp;nums[right]==nums[right-1]) right--;</span><br><span class="line">while(left&lt;nums.size()&amp;&amp;nums[left]==nums[left+1]) left++;</span><br></pre></td></tr></table></figure>
-
-<p>收集完之后避免重复的答案。</p>
-<h1 id="18四数之和"><a href="#18四数之和" class="headerlink" title="18四数之和"></a>18四数之和</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DS4y147US/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">题目链接</a></p>
-<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>这个题目相比454要考虑去重的问题。这个题目和三数之和是一样的，就是多了一层for循环</p>
-<p>直接贴出代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">            if(i&gt;0&amp;&amp;nums[i]==nums[i-1]) &#123;</span><br><span class="line">                //cout&lt;&lt;&quot;i=&quot;&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            for(int j=i+1;j&lt;nums.size();j++)&#123;</span><br><span class="line">                if(j&gt;i+1&amp;&amp;nums[j]==nums[j-1]) &#123;</span><br><span class="line">                    //cout&lt;&lt;j;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int left=j+1;</span><br><span class="line">                int right=nums.size()-1;</span><br><span class="line">                while(left&lt;right)&#123;</span><br><span class="line">                    if((long)nums[i]+nums[j]+nums[left]+nums[right]&gt;target) right--;</span><br><span class="line">                    else if((long)nums[i]+nums[j]+nums[left]+nums[right]&lt;target) left++;</span><br><span class="line">                    else&#123;</span><br><span class="line">                        result.push_back(&#123;nums[i],nums[j],nums[left],nums[right]&#125;);</span><br><span class="line">                        while(left&lt;nums.size()-1&amp;&amp;nums[left]==nums[left+1]) left++;</span><br><span class="line">                        while(right&gt;0&amp;&amp;nums[right]==nums[right-1]) right--;</span><br><span class="line"></span><br><span class="line">                        left++;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/05/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AD%E5%A4%A9454%E5%9B%9B%E6%A0%91%E7%9B%B8%E5%8A%A0%EF%BC%8C383%E8%B5%8E%E9%87%91%E4%BF%A1%EF%BC%8C15%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%EF%BC%8C18%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">展开全文 >></a>
         </p>
       
 
