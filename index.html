@@ -152,6 +152,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-第27天455分发饼干376摆动序列-53最大子序和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">第27天455分发饼干376摆动序列 53最大子序和</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="archive-article-date">
+  	<time datetime="2023-12-29T08:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="455分发饼干"><a href="#455分发饼干" class="headerlink" title="455分发饼干"></a>455分发饼干</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MM411b7cq/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/assign-cookies/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>局部最优就是大饼干喂给胃口大的，充分利用饼干尺寸喂饱一个，全局最优就是喂饱尽可能多的小孩。<br>我们把胃口和饼干进行一个排序，把小饼干先喂饱小胃口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int findContentChildren(vector&lt;int&gt;&amp; g, vector&lt;int&gt;&amp; s) &#123;</span><br><span class="line">        int i=0,j=0;</span><br><span class="line">        int cout=0;</span><br><span class="line">        sort(s.begin(),s.end());</span><br><span class="line">        sort(g.begin(),g.end());</span><br><span class="line">        while(j&lt;s.size()&amp;&amp;i&lt;g.size())&#123;</span><br><span class="line">            if(g[i]&lt;=s[j])&#123;</span><br><span class="line">                cout++;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            else j++;</span><br><span class="line">        &#125;</span><br><span class="line">        return cout;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="376摆动序列"><a href="#376摆动序列" class="headerlink" title="376摆动序列"></a>376摆动序列</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17M411b7NS/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/wiggle-subsequence/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题复杂在情况多变<br>用两个记录相邻两个差值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pre&gt;=0&amp;&amp;cur&lt;0||pre&lt;=0&amp;&amp;cur&gt;0</span><br></pre></td></tr></table></figure>
+<p>这两种情况可以说明有波动<br>有一种比较特殊<br>单调坡中有平坡，[1,2,2,2,3,4]<br>我们只需要在 这个坡度 摆动变化的时候，更新 prediff 就行，这样 prediff 在 单调区间有平坡的时候 就不会发生变化，造成我们的误判。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int wiggleMaxLength(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       if (nums.size() &lt;= 1) return nums.size();</span><br><span class="line">       int pre=0;</span><br><span class="line">       int cur=0;</span><br><span class="line">       int result=1;</span><br><span class="line">       for(int i=0;i&lt;nums.size()-1;i++)&#123;</span><br><span class="line">           cur=nums[i+1]-nums[i];</span><br><span class="line">           if(pre&gt;=0&amp;&amp;cur&lt;0||pre&lt;=0&amp;&amp;cur&gt;0)&#123;</span><br><span class="line">               result++;</span><br><span class="line">               pre=cur;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="53最大子序和"><a href="#53最大子序和" class="headerlink" title="53最大子序和"></a>53最大子序和</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aY4y1Z7ya/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>贪心的思路是前面的子序和一定要大于0才有意义<br>当前“连续和”为负数的时候立刻放弃<br>这里注意更新答案要在重新开始前面，不然负数解会变成0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int result = INT32_MIN;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;           </span><br><span class="line">            count+=nums[i];</span><br><span class="line">            if(count&gt;=result) result=count;</span><br><span class="line">            if(count&lt;=0) count=0;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第26天332-重新安排行程51N皇后37解数独" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -766,81 +840,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/19/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC18%E5%A4%A9-530-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE-501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0-236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第17天654-最大二叉树-617-合并二叉树-700-二叉搜索树中的搜索-98-验证二叉搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/18/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC17%E5%A4%A9654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91-700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2-98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">第17天654.最大二叉树 617.合并二叉树 700.二叉搜索树中的搜索  98.验证二叉搜索树</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/18/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC17%E5%A4%A9654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91-700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2-98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2023-12-18T12:40:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="654-最大二叉树"><a href="#654-最大二叉树" class="headerlink" title="654.最大二叉树"></a>654.最大二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MG411G7ox/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>构造树一般采用的是前序遍历，因为先构造中间节点，然后递归构造左子树和右子树<br>要切割左右数组递归构造左右子树，注意可能出现空子树。<br>整体代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* constructMaximumBinaryTree(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        TreeNode* cur=new TreeNode(0);</span><br><span class="line">        if(nums.size()==1)&#123;</span><br><span class="line">            cur-&gt;val=nums[0];</span><br><span class="line">            return cur;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int maxValue = 0;</span><br><span class="line">        int maxValueIndex = 0;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            if (nums[i] &gt; maxValue) &#123;</span><br><span class="line">                maxValue = nums[i];</span><br><span class="line">                maxValueIndex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;val = maxValue;</span><br><span class="line">        if(maxValueIndex&gt;0)&#123;</span><br><span class="line">            vector&lt;int&gt; leftnums(nums.begin(),nums.begin()+maxValueIndex);</span><br><span class="line">            cur-&gt;left=constructMaximumBinaryTree(leftnums);</span><br><span class="line">        &#125;</span><br><span class="line">        if(maxValueIndex&lt;nums.size()-1)&#123;</span><br><span class="line">            vector&lt;int&gt; rightnums(nums.begin()+maxValueIndex+1,nums.end());</span><br><span class="line">            cur-&gt;right=constructMaximumBinaryTree(rightnums);</span><br><span class="line">        &#125;</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="617-合并二叉树"><a href="#617-合并二叉树" class="headerlink" title="617.合并二叉树"></a>617.合并二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1m14y1Y7JK/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/">题目链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>比较简单，以root1为基础，构造树用前序遍历，root1 的左子树是：合并 root1左子树 root2左子树之后的左子树。</p>
-<p>root1 的右子树：是 合并 root1右子树 root2右子树之后的右子树。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(!root1&amp;&amp;!root2) return NULL;</span><br><span class="line">       else if(!root1) return root2;</span><br><span class="line">       else if(!root2) return root1;</span><br><span class="line">       else&#123;</span><br><span class="line">           root1-&gt;val+=root2-&gt;val;</span><br><span class="line">           root1-&gt;left=mergeTrees(root1-&gt;left,root2-&gt;left);</span><br><span class="line">           root1-&gt;right=mergeTrees(root1-&gt;right,root2-&gt;right);</span><br><span class="line">           return root1;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="700-二叉搜索树中的搜索"><a href="#700-二叉搜索树中的搜索" class="headerlink" title="700.二叉搜索树中的搜索"></a>700.二叉搜索树中的搜索</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wG411g7sF/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>这题重点是要一个值接住函数返回值<br>递归函数的返回值是什么? 左子树如果搜索到了val，要将该节点返回。 如果不用一个变量将其接住，那么返回值不就没了。</p>
-<p>所以要 result &#x3D; searchBST(root-&gt;left, val)，最后返回这个result</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(!root) return NULL;</span><br><span class="line">        if(root-&gt;val==val) return root;</span><br><span class="line">        TreeNode* result;</span><br><span class="line">        if(root-&gt;val&gt;val) &#123;</span><br><span class="line">            result =searchBST(root-&gt;left,val);</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;val&lt;val) result=searchBST(root-&gt;right,val);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98.验证二叉搜索树"></a>98.验证二叉搜索树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18P411n7Q4/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/">题目链接</a></p>
-<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>利用了二叉搜索树中序遍历之后是个顺序数组<br>利用中序遍历，验证遍历的元素是不是从小到大</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">long long maxVal = LONG_MIN;</span><br><span class="line">    bool isValidBST(TreeNode* root) &#123;</span><br><span class="line">        if (root == NULL) return true;</span><br><span class="line">        bool left = isValidBST(root-&gt;left);</span><br><span class="line">        if(maxVal&lt;root-&gt;val) maxVal=root-&gt;val;</span><br><span class="line">        else return false;</span><br><span class="line">        bool right =isValidBST(root-&gt;right);</span><br><span class="line">        return left&amp;&amp;right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/18/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC17%E5%A4%A9654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91-700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2-98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">展开全文 >></a>
         </p>
       
 
