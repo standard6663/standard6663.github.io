@@ -152,6 +152,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第八天28实现strstr，459-重复的子字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AB%E5%A4%A928%E5%AE%9E%E7%8E%B0strstr%EF%BC%8C459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">第八天28实现strstr，459.重复的子字符串</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AB%E5%A4%A928%E5%AE%9E%E7%8E%B0strstr%EF%BC%8C459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2023-12-07T02:56:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="28实现strstr"><a href="#28实现strstr" class="headerlink" title="28实现strstr"></a>28实现strstr</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1M5411j7Xx/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>实现kmp算法，首先理解最长相等前后缀</p>
+<ul>
+<li><p>前缀是指不包含最后一个字符的所有以第一个字符开头的连续子串。</p>
+</li>
+<li><p>后缀是指不包含第一个字符的所有以最后一个字符结尾的连续子串。</p>
+</li>
+</ul>
+<p>我们以aabaaf这个字符串做例子，在f这里不匹配<br><img src="/assets/front_back1.png"></p>
+<p>然后跳到第二位b继续匹配<br><img src="/assets/front_back2.png"><br>下标5之前这部分的字符串（也就是字符串aabaa）的最长相等的前缀 和 后缀字符串是 子字符串aa ，因为找到了最长相等的前缀和后缀，匹配失败的位置是后缀子串的后面，那么我们找到与其相同的前缀的后面重新匹配就可以了。</p>
+<p>前缀表<br><img src="/assets/frontchart.png"><br>然后我们可以求next数组，next数组就可以是前缀表，这里我们就用前缀表做Next数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void getNext(int* next, const string&amp; s)&#123;</span><br><span class="line">       next[0]=0;</span><br><span class="line">       int j=0;//j是前缀末尾，i是后缀末尾</span><br><span class="line">       for(int i=1;i&lt;s.size();i++)&#123;</span><br><span class="line">           while(j&gt;0&amp;&amp;s[i]!=s[j]) j=next[j-1];</span><br><span class="line">           if(s[i]==s[j]) j++;</span><br><span class="line">           next[i]=j;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>后面使用next数组做匹配，不匹配的时候指向目标的指针按照next数组回退<br>完整代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">int strStr(string haystack, string needle) &#123;</span><br><span class="line">        void getNext(int* next, const string&amp; s)&#123;</span><br><span class="line">        next[0]=0;</span><br><span class="line">        int j=0;//j是前缀末尾，i是后缀末尾</span><br><span class="line">        for(int i=1;i&lt;s.size();i++)&#123;</span><br><span class="line">            while(j&gt;0&amp;&amp;s[i]!=s[j]) j=next[j-1];</span><br><span class="line">            if(s[i]==s[j]) j++;</span><br><span class="line">            next[i]=j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int strStr(string haystack, string needle) &#123;</span><br><span class="line">        if (needle.size() == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int next[needle.size()];</span><br><span class="line">        getNext(next, needle);</span><br><span class="line">        int j=0;</span><br><span class="line">        for(int i=0;i&lt;haystack.size();i++)&#123;</span><br><span class="line">            while(j&gt;0&amp;&amp;haystack[i]!=needle[j]) j=next[j-1];</span><br><span class="line">            if(haystack[i]==needle[j]) j++;</span><br><span class="line">            if(j==needle.size()) return (i - needle.size() + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>#459.重复的子字符串</p>
+<p>这个题没有使用KMP，判断字符串s是否由重复子串组成，只要两个s拼接在一起，里面还出现一个s的话，就说明是由重复子串组成。</p>
+<p>当然，我们在判断 s + s 拼接的字符串里是否出现一个s的的时候，要刨除 s + s 的首字符和尾字符，这样避免在s+s中搜索出原来的s，我们要搜索的是中间拼接出来的s。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%85%AB%E5%A4%A928%E5%AE%9E%E7%8E%B0strstr%EF%BC%8C459-%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第七天344，541反转字符串1、2，54替换数字，151翻转字符串55右选择字符串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

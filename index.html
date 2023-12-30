@@ -152,19 +152,91 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-第27天455分发饼干376摆动序列-53最大子序和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-代码随想录/第28天122-买卖股票的最佳时机II55-跳跃游戏45-跳跃游戏II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">第27天455分发饼干376摆动序列 53最大子序和</a>
+      <a class="article-title" href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC28%E5%A4%A9122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/">第28天122.买卖股票的最佳时机II55. 跳跃游戏45.跳跃游戏II</a>
     </h1>
   
 
         
-        <a href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="archive-article-date">
+        <a href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC28%E5%A4%A9122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/" class="archive-article-date">
+  	<time datetime="2023-12-30T03:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="122-买卖股票的最佳时机"><a href="#122-买卖股票的最佳时机" class="headerlink" title="122.买卖股票的最佳时机"></a>122.买卖股票的最佳时机</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ev4y1C7na/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>利润分解为每天为单位的维度，只要price[i]&gt;price[i-1]就可以赚钱<br>累加这个利润</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int result=0;</span><br><span class="line">        for(int i=1;i&lt;prices.size();i++)&#123;</span><br><span class="line">            if(prices[i]-prices[i-1]&gt;0) result+=prices[i]-prices[i-1];</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br></pre></td></tr></table></figure>
+
+<h1 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a>55. 跳跃游戏</h1><p><a href="">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>这个题只问了能不能到，那我们定义一cover变量<br>看看这个变量能不能覆盖到最后一位，每次取当前能覆盖的最大值，只要这个最大值能到就行<br>遍历到cover最后一位还不行，就说明到不了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cover = 0;</span><br><span class="line">       if (nums.size() == 1) return true;</span><br><span class="line">       for(int i=0;i&lt;=cover;i++)&#123;</span><br><span class="line">           cover=max(cover,nums[i]+i);</span><br><span class="line">           if(cover&gt;=nums.size()-1) return true;</span><br><span class="line">       &#125;</span><br><span class="line">       return false;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="45-跳跃游戏II"><a href="#45-跳跃游戏II" class="headerlink" title="45.跳跃游戏II"></a>45.跳跃游戏II</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Y24y1r7XZ/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game-ii/">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>本题求最少步数，贪心想法是用最少的步数获取最大的覆盖范围<br>这里需要统计两个覆盖范围，当前这一步的最大覆盖和下一步最大覆盖。</p>
+<p>如果移动下标达到了当前这一步的最大覆盖最远距离了，还没有到终点的话，那么就必须再走一步来增加覆盖范围，直到覆盖范围覆盖了终点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (nums.size() == 1) return 0;</span><br><span class="line">        int result=0;</span><br><span class="line">        int cur=0;</span><br><span class="line">        int next=0;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">            next=max(next,i+nums[i]);</span><br><span class="line">            if(i==cur)&#123;</span><br><span class="line">                result++;</span><br><span class="line">                cur=next;</span><br><span class="line">                if(cur&gt;=nums.size()-1) return result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC28%E5%A4%A9122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-代码随想录/第27天455分发饼干376摆动序列-53最大子序和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">第27天455分发饼干376摆动序列 53最大子序和</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="archive-article-date">
   	<time datetime="2023-12-29T08:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-29</time>
 </a>
         
@@ -196,7 +268,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/29/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">展开全文 >></a>
         </p>
       
 
@@ -765,81 +837,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/20/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC19%E5%A4%A9235%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第18天-530-二叉搜索树的最小绝对差-501-二叉搜索树中的众数-236-二叉树的最近公共祖先" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/19/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC18%E5%A4%A9-530-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE-501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0-236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">第18天 530.二叉搜索树的最小绝对差 501.二叉搜索树中的众数 236. 二叉树的最近公共祖先</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/19/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC18%E5%A4%A9-530-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE-501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0-236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" class="archive-article-date">
-  	<time datetime="2023-12-19T15:09:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="530-二叉搜索树的最小绝对差"><a href="#530-二叉搜索树的最小绝对差" class="headerlink" title="530.二叉搜索树的最小绝对差"></a>530.二叉搜索树的最小绝对差</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DD4y11779/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>二叉搜索树基本上都是用中序遍历，这样遍历之后是升序数组，可以用双指针的方式遍历，记录最小的差值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* pre=NULL;</span><br><span class="line">    int result = INT_MAX;</span><br><span class="line">    void travel(TreeNode* cur)&#123;</span><br><span class="line">        if(cur==NULL) return;</span><br><span class="line">        travel(cur-&gt;left);</span><br><span class="line">        if(pre)&#123;</span><br><span class="line">            result=min(result,cur-&gt;val - pre-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        pre=cur;</span><br><span class="line">        travel(cur-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    int getMinimumDifference(TreeNode* root) &#123;</span><br><span class="line">        travel(root);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501.二叉搜索树中的众数"></a>501.二叉搜索树中的众数</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fD4y117gp/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-mode-in-binary-search-tree/">题目链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>在上一题的基础上，记录一下返回值和参数，这里要遍历完整个树，所以返回值为空<br>双指针的方式遍历的基础上，可以记录最大值，出现新的要清空数组。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* pre=NULL;</span><br><span class="line">    int count=1;</span><br><span class="line">    int result=INT_MIN;</span><br><span class="line">    void travel(TreeNode* cur,vector&lt;int&gt;&amp; res)&#123;</span><br><span class="line">        if(cur==NULL) return;</span><br><span class="line">        travel(cur-&gt;left,res);</span><br><span class="line">        if(pre)&#123;</span><br><span class="line">            if(cur-&gt;val==pre-&gt;val) count++;</span><br><span class="line">            else count=1;</span><br><span class="line">        &#125;</span><br><span class="line">        pre=cur;</span><br><span class="line">        if(count==result)&#123;</span><br><span class="line">            result=count;</span><br><span class="line">            res.push_back(cur-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        if(count&gt;result)&#123;</span><br><span class="line">            result=count;</span><br><span class="line">            res.clear();</span><br><span class="line">            res.push_back(cur-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        travel(cur-&gt;right,res);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;int&gt; findMode(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;int&gt; res;</span><br><span class="line">        travel(root,res);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="236-二叉树的最近公共祖先"><a href="#236-二叉树的最近公共祖先" class="headerlink" title="236. 二叉树的最近公共祖先"></a>236. 二叉树的最近公共祖先</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jd4y1B7E2/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>需要回溯，自底向上查找，用后序遍历，如果 root &#x3D;&#x3D; q，或者 root &#x3D;&#x3D; p，说明找到 q p ，则将其返回，要是发现左右都不为空则找到答案。<br>这个题的返回值比较特殊，本题函数有返回值，是因为回溯的过程需要递归函数的返回值做判断，但本题我们依然要遍历树的所有节点。因为这个题left、right后序还有逻辑处理的需要，也就是后序遍历中处理中间节点的逻辑（也是回溯）<br>有回溯</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">left = 递归函数(root-&gt;left);  // 左</span><br><span class="line">right = 递归函数(root-&gt;right); // 右</span><br><span class="line">left与right的逻辑处理;         // 中 </span><br></pre></td></tr></table></figure>
-<p>找到直接返回</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (递归函数(root-&gt;left)) return ;</span><br><span class="line"></span><br><span class="line">if (递归函数(root-&gt;right)) return ;</span><br></pre></td></tr></table></figure>
-
-<p>整体代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(root==NULL||root==p||root==q) return root;</span><br><span class="line">TreeNode* left=lowestCommonAncestor(root-&gt;left,p,q);</span><br><span class="line">TreeNode* right=lowestCommonAncestor(root-&gt;right,p,q);</span><br><span class="line">if(left&amp;&amp;right) return root;</span><br><span class="line">if(!right&amp;&amp;left) return left;</span><br><span class="line">return right;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/19/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC18%E5%A4%A9-530-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE-501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0-236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">展开全文 >></a>
         </p>
       
 
