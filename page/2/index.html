@@ -152,6 +152,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第19天235二叉搜索树的最近公共祖先701-二叉搜索树中的插入操作-450-删除二叉搜索树中的节点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/20/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC19%E5%A4%A9235%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">第19天235二叉搜索树的最近公共祖先701.二叉搜索树中的插入操作 450.删除二叉搜索树中的节点</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/20/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC19%E5%A4%A9235%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="archive-article-date">
+  	<time datetime="2023-12-20T15:17:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="235二叉搜索树的最近公共祖先"><a href="#235二叉搜索树的最近公共祖先" class="headerlink" title="235二叉搜索树的最近公共祖先"></a>235二叉搜索树的最近公共祖先</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zt4y1F7ww/?share_source=copy_web">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>从上到下，第一次遇到 cur节点是数值在[q, p]区间中就是答案<br>调用递归函数的地方，把递归函数的返回值left，直接return<br>这是标准的返回一条边</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) &#123;</span><br><span class="line">        if(root==NULL) return NULL;</span><br><span class="line">        if(root-&gt;val&gt;p-&gt;val&amp;&amp;root-&gt;val&gt;q-&gt;val)&#123;</span><br><span class="line">            TreeNode* left=lowestCommonAncestor(root-&gt;left,p,q);</span><br><span class="line">            if(left)return left;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;val&lt;p-&gt;val&amp;&amp;root-&gt;val&lt;q-&gt;val)&#123;</span><br><span class="line">            TreeNode* right=lowestCommonAncestor(root-&gt;right,p,q);</span><br><span class="line">            if(right) return right;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="701-二叉搜索树中的插入操作"><a href="#701-二叉搜索树中的插入操作" class="headerlink" title="701.二叉搜索树中的插入操作"></a>701.二叉搜索树中的插入操作</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Et4y1c78Y/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>在最下面插入，不调整形状</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* insertIntoBST(TreeNode* root, int val) &#123;</span><br><span class="line">        if(root==NULL)&#123;</span><br><span class="line">            TreeNode* cur=new TreeNode(val);</span><br><span class="line">            return cur;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;val&gt;val)&#123;</span><br><span class="line">            root-&gt;left=insertIntoBST(root-&gt;left,val);</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;val&lt;val)&#123;</span><br><span class="line">            root-&gt;right=insertIntoBST(root-&gt;right,val);</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450.删除二叉搜索树中的节点"></a>450.删除二叉搜索树中的节点</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tP41177us/">视频链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>要调整树形</p>
+<ul>
+<li>第一种情况：没找到删除的节点，遍历到空节点直接返回了<br>找到删除的节点</li>
+<li>第二种情况：左右孩子都为空（叶子节点），直接删除节点， 返回NULL为根节点</li>
+<li>第三种情况：删除节点的左孩子为空，右孩子不为空，删除节点，右孩子补位，返回右孩子为根节点</li>
+<li>第四种情况：删除节点的右孩子为空，左孩子不为空，删除节点，左孩子补位，返回左孩子为根节点</li>
+<li>第五种情况：左右孩子节点都不为空，则将删除节点的左子树头结点（左孩子）放到删除节点的右子树的最左面节点的左孩子上，返回删除节点右孩子为新的根节点。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">TreeNode *tmp=NULL;</span><br><span class="line">    TreeNode* deleteNode(TreeNode* root, int key) &#123;</span><br><span class="line">        if(root==NULL) return NULL;</span><br><span class="line">        if(root-&gt;val==key)&#123;</span><br><span class="line">            if(!root-&gt;left&amp;&amp;!root-&gt;right)&#123;</span><br><span class="line">                delete root;</span><br><span class="line">                return NULL;</span><br><span class="line">            &#125;</span><br><span class="line">            if(!root-&gt;left&amp;&amp;root-&gt;right)&#123;</span><br><span class="line">                tmp=root-&gt;right;</span><br><span class="line">                delete root;</span><br><span class="line">                return tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            if(!root-&gt;right&amp;&amp;root-&gt;left)&#123;</span><br><span class="line">                tmp=root-&gt;left;</span><br><span class="line">                delete root;</span><br><span class="line">                return tmp;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                TreeNode* cur=root-&gt;right;</span><br><span class="line">                while(cur-&gt;left!=NULL) cur=cur-&gt;left;</span><br><span class="line">                cur-&gt;left=root-&gt;left;</span><br><span class="line">                tmp=root-&gt;right;</span><br><span class="line">                delete root;</span><br><span class="line">                return tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(root-&gt;val &gt; key) root-&gt;left=root-&gt;left = deleteNode(root-&gt;left, key);</span><br><span class="line">            if(root-&gt;val&lt;key) root-&gt;right=deleteNode(root-&gt;right,key);</span><br><span class="line">            return root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/20/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC19%E5%A4%A9235%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第18天-530-二叉搜索树的最小绝对差-501-二叉搜索树中的众数-236-二叉树的最近公共祖先" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -846,80 +924,9 @@
 
 
   
-    <article id="post-代码随想录/第九天232用栈实现队列，225用队列实现栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B9%9D%E5%A4%A9232%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%8C225%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">第九天232用栈实现队列，225用队列实现栈</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B9%9D%E5%A4%A9232%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%8C225%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2023-12-08T03:55:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="232用栈实现队列"><a href="#232用栈实现队列" class="headerlink" title="232用栈实现队列"></a>232用栈实现队列</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-queue-using-stacks/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nY4y1w7VC/">视频链接</a></p>
-<p>##重点</p>
-<p>需要两个栈一个输入栈，一个输出栈来模拟队列。在push数据的时候，只要数据放进输入栈就好，但在pop的时候，操作就复杂一些，输出栈如果为空，就把进栈数据全部导入进来。再从出栈弹出数据，如果输出栈不为空，则直接从出栈弹出数据就可以了。</p>
-<p>获得栈顶元素可以先弹出再重新压栈</p>
-<p>判断是否为空，可以判断输出和输入栈是否为空。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;int&gt; stIn;</span><br><span class="line">    stack&lt;int&gt; stOut;</span><br><span class="line">    MyQueue() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        stIn.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int pop() &#123;</span><br><span class="line">        if (stOut.empty())&#123;</span><br><span class="line">            while(!stIn.empty())&#123;</span><br><span class="line">                stOut.push(stIn.top());</span><br><span class="line">                stIn.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int result=stOut.top();</span><br><span class="line">        stOut.pop();</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int peek() &#123;</span><br><span class="line">        int res=this-&gt;pop();</span><br><span class="line">        stOut.push(res);</span><br><span class="line">        res=stOut.top();</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool empty() &#123;</span><br><span class="line">        return stOut.empty()&amp;&amp;stIn.empty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="225用队列实现栈"><a href="#225用队列实现栈" class="headerlink" title="225用队列实现栈"></a>225用队列实现栈</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-stack-using-queues/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fd4y1K7sm/">视频链接</a></p>
-<p>##重点<br>用两个队列来模拟，队列2只是用来备份的，pop的时候把最后一个数据之前的数据都Push到que2中，pop完之后把que2的数据Push到que1中</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;int&gt; que1;</span><br><span class="line">    queue&lt;int&gt; que2;//只用来备份数据</span><br><span class="line">    MyStack() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        que1.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int pop() &#123;</span><br><span class="line">        int size=que1.size();</span><br><span class="line">        size--;</span><br><span class="line">        while(size--)&#123;</span><br><span class="line">            que2.push(que1.front());</span><br><span class="line">            que1.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        int result = que1.front();</span><br><span class="line">        que1.pop();</span><br><span class="line">        while(!que2.empty())&#123;</span><br><span class="line">            que1.push(que2.front());</span><br><span class="line">            que2.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int top() &#123;</span><br><span class="line">        return que1.back();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool empty() &#123;</span><br><span class="line">        return que1.empty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B9%9D%E5%A4%A9232%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%EF%BC%8C225%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -931,7 +938,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 John Doe
+    		&copy; 2024 John Doe
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
