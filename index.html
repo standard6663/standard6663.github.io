@@ -152,6 +152,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第30天860-柠檬水找零406根据身高重建队列452-用最少数量的箭引爆气球" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC30%E5%A4%A9860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6406%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">第30天860.柠檬水找零406根据身高重建队列452. 用最少数量的箭引爆气球</a>
+    </h1>
+  
+
+        
+        <a href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC30%E5%A4%A9860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6406%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" class="archive-article-date">
+  	<time datetime="2024-01-02T02:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>860.柠檬水找零跳过</p>
+<h1 id="406根据身高重建队列"><a href="#406根据身高重建队列" class="headerlink" title="406根据身高重建队列"></a>406根据身高重建队列</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/queue-reconstruction-by-height/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EA411675Y/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>一定要先确定一个维度，再确定另一个维度。<br>按照身高h来排序，身高一定是从大到小排（身高相同的话则k小的站前面），让高个子在前面。</p>
+<p>按照身高排序之后，优先按身高高的people的k来插入，因为身高高的排前面，后面插入的节点不影响前面的，最终按照k的规则完成了队列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">static bool cmp(const vector&lt;int&gt;&amp; a, const vector&lt;int&gt;&amp; b) &#123;</span><br><span class="line">       if (a[0] == b[0]) return a[1] &lt; b[1];</span><br><span class="line">       return a[0] &gt; b[0];</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; reconstructQueue(vector&lt;vector&lt;int&gt;&gt;&amp; people) &#123;</span><br><span class="line">       sort(people.begin(),people.end(),cmp);</span><br><span class="line">       vector&lt;vector&lt;int&gt;&gt; que;</span><br><span class="line">       for(int i=0;i&lt;people.size();i++)&#123;</span><br><span class="line">           que.insert(que.begin()+people[i][1],people[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       return que;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="452-用最少数量的箭引爆气球"><a href="#452-用最少数量的箭引爆气球" class="headerlink" title="452. 用最少数量的箭引爆气球"></a>452. 用最少数量的箭引爆气球</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1SA41167xe/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>是一个求重叠区间的题目,尽可能的射重叠区间的气球<br>把气球先按起始区间<br>如果气球重叠了，重叠气球中<strong>右边边界的最小值</strong>之前的区间一定需要一个弓箭。<br>不一定是右边气球的右边界更小，我们要求重叠气球中最小的右边界来和下一个气球经行对比</p>
+<p>如果不重叠就要加一支箭</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static bool cmp(const vector&lt;int&gt;&amp; a,const vector&lt;int&gt;&amp; b)&#123;</span><br><span class="line">        return a[0]&lt;b[0];</span><br><span class="line">    &#125;</span><br><span class="line">    int findMinArrowShots(vector&lt;vector&lt;int&gt;&gt;&amp; points) &#123;</span><br><span class="line">       sort(points.begin(),points.end());</span><br><span class="line">       int result=1;</span><br><span class="line">       for(int i=1;i&lt;points.size();i++)&#123;</span><br><span class="line">           if(points[i][0]&gt;points[i-1][1]) result++;</span><br><span class="line">           else&#123;</span><br><span class="line">               points[i][1]=min(points[i-1][1],points[i][1]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC30%E5%A4%A9860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6406%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第29天1005-K次取反后最大化的数组和134-加油站135分发糖果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -761,79 +831,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/22/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC21%E5%A4%A977%E7%BB%84%E5%90%88/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第20天669修剪二叉搜索树108将有序数组转换为二叉搜索树538把二叉搜索树转换为累加树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/21/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC20%E5%A4%A9669%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91108%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91538%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/">第20天669修剪二叉搜索树108将有序数组转换为二叉搜索树538把二叉搜索树转换为累加树</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/21/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC20%E5%A4%A9669%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91108%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91538%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2023-12-21T10:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="669修剪二叉搜索树"><a href="#669修剪二叉搜索树" class="headerlink" title="669修剪二叉搜索树"></a>669修剪二叉搜索树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tP41177us/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trim-a-binary-search-tree/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>来看这个题怎么处理单层递归逻辑<br>如果root（当前节点）的元素小于low的数值，应该返回当前节点右节点的处理结果</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (root-&gt;val &lt; low) &#123;</span><br><span class="line">    TreeNode* right = trimBST(root-&gt;right, low, high); </span><br><span class="line">    return right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>左边也是一样的<br>这是处理本层结点，后面就要接收下一层的结果</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if(root==NULL) return NULL;</span><br><span class="line">       if(root-&gt;val&lt;low)&#123;</span><br><span class="line">           TreeNode* right=trimBST(root-&gt;right,low,high);</span><br><span class="line">           return right;</span><br><span class="line">       &#125;</span><br><span class="line">       if(root-&gt;val&gt;high)&#123;</span><br><span class="line">           TreeNode* left=trimBST(root-&gt;left,low,high);</span><br><span class="line">           return left;</span><br><span class="line">       &#125;</span><br><span class="line">       root-&gt;left=trimBST(root-&gt;left,low,high);</span><br><span class="line">       root-&gt;right=trimBST(root-&gt;right,low,high);</span><br><span class="line">       return root;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>把接收下一层的结果放前面也可以</p>
-<h1 id="108将有序数组转换为二叉搜索树"><a href="#108将有序数组转换为二叉搜索树" class="headerlink" title="108将有序数组转换为二叉搜索树"></a>108将有序数组转换为二叉搜索树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17P41177ud/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trim-a-binary-search-tree/">题目链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>递归构造左右子树，切割点就是中间节点。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">TreeNode* bindtree(vector&lt;int&gt;&amp; nums,int left,int right)&#123;</span><br><span class="line">        if(left&gt;right) return NULL;</span><br><span class="line">        int mid=left + ((right - left) / 2);</span><br><span class="line">        TreeNode *cur =new TreeNode(nums[mid]);</span><br><span class="line">        cur-&gt;left=bindtree(nums,left,mid-1);</span><br><span class="line">        cur-&gt;right=bindtree(nums,mid+1,right);</span><br><span class="line">        return cur;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">//使用左闭右闭</span><br><span class="line">        if(nums.size()&lt;1) return NULL;</span><br><span class="line">        return bindtree(nums,0,nums.size()-1);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="538把二叉搜索树转换为累加树"><a href="#538把二叉搜索树转换为累加树" class="headerlink" title="538把二叉搜索树转换为累加树"></a>538把二叉搜索树转换为累加树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d44y1f7wP/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-bst-to-greater-tree/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>反中序遍历，累加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int res=0;</span><br><span class="line">   void travel(TreeNode* root)&#123;</span><br><span class="line">       if(root==NULL) return;</span><br><span class="line">       travel(root-&gt;right);//</span><br><span class="line">       res+=root-&gt;val;</span><br><span class="line">       root-&gt;val=res;</span><br><span class="line">       travel(root-&gt;left);</span><br><span class="line">   &#125;</span><br><span class="line">   TreeNode* convertBST(TreeNode* root) &#123;</span><br><span class="line">       travel(root);</span><br><span class="line">       return root;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/21/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC20%E5%A4%A9669%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91108%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91538%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/">展开全文 >></a>
         </p>
       
 
