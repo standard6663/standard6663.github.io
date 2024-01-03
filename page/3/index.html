@@ -152,6 +152,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第11天230滑动窗口最大值，347前K个高频" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC11%E5%A4%A9230%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%EF%BC%8C347%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91/">第11天230滑动窗口最大值，347前K个高频</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC11%E5%A4%A9230%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%EF%BC%8C347%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91/" class="archive-article-date">
+  	<time datetime="2023-12-11T02:27:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="230滑动窗口最大值"><a href="#230滑动窗口最大值" class="headerlink" title="230滑动窗口最大值"></a>230滑动窗口最大值</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XS4y1p7qj/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题用到了单调队列，一个元素入队的时候，前面比他小的可以都出队，因为已经不可能是最大的结果了。移动窗口的时候，检查最前面窗口的元素是否等于队列头的元素，相等则出队，不等则不做任何操作，因为这个元素不可能是答案。</p>
+<p>设计单调队列的时候，pop，和push操作要保持如下规则：</p>
+<ol>
+<li>pop(value)：如果窗口移除的元素value等于单调队列的出口元素，那么队列弹出元素，否则不用任何操作</li>
+<li>push(value)：如果push的元素value大于入口元素的数值，那么就将队列入口的元素弹出，直到push元素的数值小于等于队列入口元素的数值为止。</li>
+</ol>
+<p>保持如上规则，每次窗口移动的时候，只要问que.front()就可以返回当前窗口的最大值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Myque&#123;</span><br><span class="line">            public:</span><br><span class="line">            deque&lt;int&gt; que;</span><br><span class="line">            int front()&#123;</span><br><span class="line">                return que.front();</span><br><span class="line">            &#125;</span><br><span class="line">            void push(int val)&#123;</span><br><span class="line">                while(!que.empty()&amp;&amp;que.back()&lt;val) que.pop_back();</span><br><span class="line">                que.push_back(val);</span><br><span class="line">            &#125;</span><br><span class="line">            void pop(int val)&#123;</span><br><span class="line">                if(!que.empty()&amp;&amp;que.front()==val) que.pop_front();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">       vector&lt;int&gt; res;</span><br><span class="line">       Myque que;</span><br><span class="line">       for(int i=0;i&lt;k;i++)  que.push(nums[i]);</span><br><span class="line">       res.push_back(que.front());</span><br><span class="line">       for(int i=k;i&lt;nums.size();i++)&#123;</span><br><span class="line">           </span><br><span class="line">           que.push(nums[i]);</span><br><span class="line">           que.pop(nums[i-k]);</span><br><span class="line">           res.push_back(que.front());</span><br><span class="line">       &#125;</span><br><span class="line">       return res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="230347前K个高频"><a href="#230347前K个高频" class="headerlink" title="230347前K个高频"></a>230347前K个高频</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/top-k-frequent-elements/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Xg41167Lz/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>第一眼自己想到的就是对map中的value排序，选前K个大的，复杂度为o(nlogn)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static bool cmp(pair&lt;int,int&gt; &amp;a,pair&lt;int,int&gt; &amp;b)&#123;</span><br><span class="line">        return a.second&gt;b.second;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; map; // map&lt;nums[i], 对应出现的次数&gt;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            map[nums[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;pair&lt;int,int&gt;&gt; num_pair(map.begin(),map.end());</span><br><span class="line">        sort(num_pair.begin(),num_pair.end(),cmp);</span><br><span class="line">        vector&lt;int&gt; result;</span><br><span class="line">        for(int i=0;i&lt;k;i++) result.push_back(num_pair[i].first);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们只需要用前k个大小的数据，不需要对整个Map排序，用priority_queue（优先级队列）如果使用大顶堆，在每次移动更新大顶堆的时候，每次弹出都把最大的元素弹出去了。所以我<br>们使用小顶堆。把最小的弹出去，遍历完一般后只剩下最大k个，复杂度为O(nlogk)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        class mycomparison&#123;</span><br><span class="line">            public:</span><br><span class="line">                bool operator()(const pair&lt;int, int&gt;&amp; lhs, const pair&lt;int, int&gt;&amp; rhs) &#123;</span><br><span class="line">            return lhs.second &gt; rhs.second;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        unordered_map&lt;int,int&gt; ans;</span><br><span class="line">        for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">            ans[nums[i]]++;</span><br><span class="line">        priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;&gt;,mycomparison&gt; </span><br><span class="line">        pri_q;</span><br><span class="line">         for(auto it=ans.begin();it !=ans.end();it++)&#123;</span><br><span class="line">            pri_q.push(*it);</span><br><span class="line">            if(pri_q.size()&gt;k) pri_q.pop();</span><br><span class="line">         &#125;</span><br><span class="line">         vector&lt;int&gt; answer(k);</span><br><span class="line">         for (int i = k - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">             answer[i] = pri_q.top().first;</span><br><span class="line">             pri_q.pop();</span><br><span class="line">         &#125;</span><br><span class="line">         return answer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/11/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC11%E5%A4%A9230%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%EF%BC%8C347%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第10天20有效括号，1047-删除字符串中的所有相邻重复项，150-逆波兰表达式求值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -873,118 +950,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%8C%E5%A4%A9977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9-%EF%BC%8C209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84-%EF%BC%8C59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第一天-704-二分查找、27-移除元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">第一天 704. 二分查找、27. 移除元素</a>
-    </h1>
-  
-
-        
-        <a href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2023-11-29T05:42:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LeetCode704-二分查找"><a href="#LeetCode704-二分查找" class="headerlink" title="LeetCode704.二分查找"></a>LeetCode704.二分查找</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fA4y1o715/">视频链接</a></p>
-</blockquote>
-<h2 id="二分查找重点分析"><a href="#二分查找重点分析" class="headerlink" title="二分查找重点分析"></a>二分查找重点分析</h2><ul>
-<li>左闭右闭[left , right]</li>
-<li>左闭右开[left , right）</li>
-</ul>
-<p>对于两种不同的区间写法，其关键的区分点有以下三点：</p>
-<ul>
-<li><p>在初始设定右边界时，设定为right &#x3D; nums.size() - 1还是right &#x3D; nums.size()</p>
-</li>
-<li><p>while循环的判定条件应该应取left &lt; right还是left &lt;&#x3D; right</p>
-</li>
-<li><p>在更新右边界时，应设定right &#x3D; middle - 1还是right &#x3D; middle</p>
-</li>
-</ul>
-<p>1.左闭右闭[left , right]的时候（我只写了这种）</p>
-<ul>
-<li>判断结束的时候，while(left&lt;&#x3D;right),这里left&#x3D;right依然有效，所以用&#x3D;</li>
-<li>不相等的时候，两边的边界都是有意义的，而且已经确定是不符合条件的，所以left&#x3D;mid+1,right&#x3D;mid-1</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>卡哥讲的循环不变量很重要，写代码的时候记得什么变什么不变，一直两种选一种写。</p>
-<h1 id="LeetCode27-移除元素"><a href="#LeetCode27-移除元素" class="headerlink" title="LeetCode27. 移除元素"></a>LeetCode27. 移除元素</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://https//leetcode.cn/problems/remove-element/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12A4y1Z7LP/">视频链接</a></p>
-</blockquote>
-<p>暴力解法就是相等之后，把后面的都移动复杂度O(n^2)<br>双指针法就是一个读指针和一个写指针，相等就一起移动，不相等把读指针的值赋给写指针</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int fastIndex=0;</span><br><span class="line">        int showIndex=0;</span><br><span class="line">        for(fastIndex=0;fastIndex&lt;nums.size();fastIndex++)&#123;</span><br><span class="line">            if(nums[fastIndex]!=val)&#123;</span><br><span class="line">                nums[showIndex]=nums[fastIndex];</span><br><span class="line">                showIndex++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return showIndex;</span><br></pre></td></tr></table></figure>
-<p>慢指针就是写指针，最后慢指针指向数组最后，是新数组的长度</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Markdown//" class="article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/11/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%80%E5%A4%A9-704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%8127-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">展开全文 >></a>
         </p>
       
 
