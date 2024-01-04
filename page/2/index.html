@@ -152,6 +152,73 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第22天216组合总和III17-电话号码的字母组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/23/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC22%E5%A4%A9216%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CIII17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/">216组合总和III17.电话号码的字母组合</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/23/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC22%E5%A4%A9216%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CIII17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/" class="archive-article-date">
+  	<time datetime="2023-12-23T10:17:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="216组合总和III"><a href="#216组合总和III" class="headerlink" title="216组合总和III"></a>216组合总和III</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wg411873x/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-iii/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>和组合其实是差不多的，确定终止条件的时候判断是不是符合条件就行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; path;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; res;</span><br><span class="line">   void backtraing(int k,int n,int target,int index)&#123;</span><br><span class="line">       if(path.size()==k)&#123;</span><br><span class="line">           if(target==0) res.push_back(path);</span><br><span class="line">           return;</span><br><span class="line">       &#125;</span><br><span class="line">       for(int i=index;i&lt;=9;i++)&#123;</span><br><span class="line">           if(i&gt;target) return;</span><br><span class="line">           target-=i;</span><br><span class="line">           path.push_back(i);</span><br><span class="line">           backtraing(k,n,target,i+1);</span><br><span class="line">           path.pop_back();</span><br><span class="line">           target+=i;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) &#123;</span><br><span class="line">       backtraing(k,n,n,1);</span><br><span class="line">       return res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="216I17-电话号码的字母组合"><a href="#216I17-电话号码的字母组合" class="headerlink" title="216I17.电话号码的字母组合"></a>216I17.电话号码的字母组合</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yV4y1V7Ug/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题是在多个数组中选择结果，这里需要用Index记录访问到哪个字符了，而不用考虑重复取值，因为每个数组只用选一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">const string letterMap[10] = &#123;</span><br><span class="line">    &quot;&quot;, // 0</span><br><span class="line">    &quot;&quot;, // 1</span><br><span class="line">    &quot;abc&quot;, // 2</span><br><span class="line">    &quot;def&quot;, // 3</span><br><span class="line">    &quot;ghi&quot;, // 4</span><br><span class="line">    &quot;jkl&quot;, // 5</span><br><span class="line">    &quot;mno&quot;, // 6</span><br><span class="line">    &quot;pqrs&quot;, // 7</span><br><span class="line">    &quot;tuv&quot;, // 8</span><br><span class="line">    &quot;wxyz&quot;, // 9</span><br><span class="line">&#125;;  </span><br><span class="line">vector&lt;string&gt; result;</span><br><span class="line">string s;</span><br><span class="line">    void backtracing(string digits,int index)&#123;</span><br><span class="line">        if(index==digits.size())&#123;</span><br><span class="line">            result.push_back(s);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int num=digits[index]-&#x27;0&#x27;;</span><br><span class="line">        for(int i=0;i&lt;letterMap[num].size();i++)&#123;</span><br><span class="line">            s.push_back(letterMap[num][i]);</span><br><span class="line">            backtracing(digits,index+1);</span><br><span class="line">            s.pop_back(); </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;string&gt; letterCombinations(string digits) &#123;</span><br><span class="line">        if (digits.size() == 0) &#123;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line">        backtracing(digits,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/23/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC22%E5%A4%A9216%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CIII17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第21天77组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -798,90 +865,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第12天二叉树的各种遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/">第12天二叉树的各种遍历</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/" class="archive-article-date">
-  	<time datetime="2023-12-12T04:08:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a>递归遍历</h1><h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>递归的写法遵循三部曲</p>
-<ol>
-<li><p>确定递归函数的参数和返回值： 确定哪些参数是递归的过程中需要处理的，那么就在递归函数里加上这个参数， 并且还要明确每次递归的返回值是什么进而确定递归函数的返回类型。</p>
-</li>
-<li><p>确定终止条件： 写完了递归算法, 运行的时候，经常会遇到栈溢出的错误，就是没写终止条件或者终止条件写的不对，操作系统也是用一个栈的结构来保存每一层递归的信息，如果递归没有终止，操作系统的内存栈必然就会溢出。</p>
-</li>
-<li><p>确定单层递归的逻辑： 确定每一层递归需要处理的信息。在这里也就会重复调用自己来实现递归的过程。</p>
-</li>
-</ol>
-<p>递归的写法遵循三部曲一般就能写出来。<br>以前序为例子</p>
-<ol>
-<li>确定递归函数的参数和返回值<br>  需要遍历所有的节点，返回值为空；需要传入头节点和记录答案的数组<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec)</span><br></pre></td></tr></table></figure></li>
-<li>确定终止条件<br>  当前遍历的节点是空结束<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (cur == NULL) return;</span><br></pre></td></tr></table></figure></li>
-<li>确定单层递归的逻辑<br> 前序需要先遍历中，然后左右<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec.push_back(cur-&gt;val);    // 中</span><br><span class="line">traversal(cur-&gt;left, vec);  // 左</span><br><span class="line">traversal(cur-&gt;right, vec); // 右</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>#一般迭代法<br>以中序为例，先访问的是二叉树顶部的节点，然后一层一层向下访问，直到到达树左面的最底部，再开始处理节点（也就是在把节点的数值放进result数组中），这就造成了处理顺序和访问顺序是不一致的。</p>
-<p>那么我们要先往最左边访问，从栈访问弹出的元素，再压入右节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;TreeNode*&gt; st;</span><br><span class="line">        vector&lt;int&gt; result;</span><br><span class="line">        TreeNode* cur=root;</span><br><span class="line">        while(!st.empty()||cur!=NULL)&#123;</span><br><span class="line">            if(cur!=NULL)&#123;</span><br><span class="line">                st.push(cur);</span><br><span class="line">                cur=cur-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                cur=st.top();</span><br><span class="line">                st.pop();</span><br><span class="line">                result.push_back(cur-&gt;val);</span><br><span class="line">                cur=cur-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="统一迭代法"><a href="#统一迭代法" class="headerlink" title="统一迭代法"></a>统一迭代法</h1><p>使用统一迭代法，以中序为例<br>我们用栈模拟，先输出的要后入栈</p>
-<p>添加中节点之后要添加空节点，碰到空节点才将下一个节点放进结果集。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; result;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        if (root != NULL) st.push(root);</span><br><span class="line">        while (!st.empty()) &#123;</span><br><span class="line">            TreeNode* node = st.top();</span><br><span class="line">            if (node != NULL) &#123;</span><br><span class="line">                st.pop(); // 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中</span><br><span class="line">                if (node-&gt;right) st.push(node-&gt;right);  // 添加右节点（空节点不入栈）</span><br><span class="line"></span><br><span class="line">                st.push(node);                          // 添加中节点</span><br><span class="line">                st.push(NULL); // 中节点访问过，但是还没有处理，加入空节点做为标记。</span><br><span class="line"></span><br><span class="line">                if (node-&gt;left) st.push(node-&gt;left);    // 添加左节点（空节点不入栈）</span><br><span class="line">            &#125; else &#123; // 只有遇到空节点的时候，才将下一个节点放进结果集</span><br><span class="line">                st.pop();           // 将空节点弹出</span><br><span class="line">                node = st.top();    // 重新取出栈中元素</span><br><span class="line">                st.pop();</span><br><span class="line">                result.push_back(node-&gt;val); // 加入到结果集</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/12/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC12%E5%A4%A9%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86/">展开全文 >></a>
         </p>
       
 
