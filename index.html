@@ -152,19 +152,94 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-第32天738-单调递增的数字968-监控二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-代码随想录/第34天62不同路径63不同路径2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/04/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">第32天738.单调递增的数字968.监控二叉树</a>
+      <a class="article-title" href="/2024/01/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC34%E5%A4%A962%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%8463%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842/">第34天62不同路径63不同路径2</a>
     </h1>
   
 
         
-        <a href="/2024/01/04/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+        <a href="/2024/01/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC34%E5%A4%A962%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%8463%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842/" class="archive-article-date">
+  	<time datetime="2024-01-06T02:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="62不同路径"><a href="#62不同路径" class="headerlink" title="62不同路径"></a>62不同路径</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ve4y1x7Eu/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p><img src="/assets/different_path.png"><br>从起点走到终点，只能从上面一个和左边一个走过来</p>
+<ol>
+<li>dp数组以及下标的含义<br>dp[i][j]代表走到i行j列的路径数量</li>
+<li>递推公式<br>dp[i][j]&#x3D;dp[i-1][j]+dp[i][j-1]</li>
+<li>初始化<br>第一行和第一列都为1</li>
+<li>遍历顺序<br>先行后列<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int uniquePaths(int m, int n) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; dp(m,vector&lt;int&gt;(n,0));</span><br><span class="line">        for(int i=0;i&lt;m;i++) dp[i][0]=1;</span><br><span class="line">        for(int j=0;j&lt;n;j++) dp[0][j]=1;</span><br><span class="line">        for(int i=1;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j=1;j&lt;n;j++)&#123;</span><br><span class="line">                dp[i][j]=dp[i-1][j]+dp[i][j-1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[m-1][n-1];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="63不同路径2"><a href="#63不同路径2" class="headerlink" title="63不同路径2"></a>63不同路径2</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ld4y1k7c6/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>不同的是加入了障碍<br>那么递推的时候要考虑是不是从合法地址走过来的</p>
+<p>最重要的是初始化的时候第一行和第一列要是碰到障碍就不能往下走了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));</span><br><span class="line">for (int i = 0; i &lt; m &amp;&amp; obstacleGrid[i][0] == 0; i++) dp[i][0] = 1;</span><br><span class="line">for (int j = 0; j &lt; n &amp;&amp; obstacleGrid[0][j] == 0; j++) dp[0][j] = 1;</span><br></pre></td></tr></table></figure>
+<p>整体代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int uniquePathsWithObstacles(vector&lt;vector&lt;int&gt;&gt;&amp; obstacleGrid) &#123;</span><br><span class="line">        int m = obstacleGrid.size();</span><br><span class="line">        int n = obstacleGrid[0].size();</span><br><span class="line">	if (obstacleGrid[m - 1][n - 1] == 1 || obstacleGrid[0][0] == 1) //如果在起点或终点出现了障碍，直接返回0</span><br><span class="line">            return 0;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(n, 0));</span><br><span class="line">        for (int i = 0; i &lt; m &amp;&amp; obstacleGrid[i][0] == 0; i++) dp[i][0] = 1;</span><br><span class="line">        for (int j = 0; j &lt; n &amp;&amp; obstacleGrid[0][j] == 0; j++) dp[0][j] = 1;</span><br><span class="line">        //一旦遇到obstacleGrid[i][0] == 1的情况就停止dp[i][0]的赋值1的操作</span><br><span class="line">        for (int i = 1; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (obstacleGrid[i][j] == 1) continue;</span><br><span class="line">                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[m - 1][n - 1];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/01/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC34%E5%A4%A962%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%8463%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-代码随想录/第32天738-单调递增的数字968-监控二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">第32天738.单调递增的数字968.监控二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
   	<time datetime="2024-01-04T02:07:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-04</time>
 </a>
         
@@ -204,7 +279,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2024/01/04/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+          <a class="article-more-a" href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
         </p>
       
 
@@ -781,81 +856,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC24%E5%A4%A993%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%8078%E5%AD%90%E9%9B%8690-%E5%AD%90%E9%9B%86II/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第23天39组合总和40-组合总和II131-分割回文串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/">第23天39组合总和40.组合总和II131.分割回文串</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/" class="archive-article-date">
-  	<time datetime="2023-12-26T15:02:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="39组合总和"><a href="#39组合总和" class="headerlink" title="39组合总和"></a>39组合总和</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KT4y1M7HJ/">视频链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>一个集合来求组合的话，就需要startIndex来记录上一层的位置，本题判断相等就压入结果</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">    vector&lt;int&gt; path;</span><br><span class="line">    void backtracing(vector&lt;int&gt;&amp; candidates, int target,int index)&#123;</span><br><span class="line">        if(target&lt;0) return;</span><br><span class="line">        if(target==0)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=index;i&lt;candidates.size();i++)&#123;</span><br><span class="line">            if(target&lt;candidates[i]) return;</span><br><span class="line">            path.push_back(candidates[i]);</span><br><span class="line">            backtracing(candidates,target-candidates[i],i);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        sort(candidates.begin(), candidates.end()); // 需要排序</span><br><span class="line">        backtracing(candidates,target,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="40-组合总和II"><a href="#40-组合总和II" class="headerlink" title="40.组合总和II"></a>40.组合总和II</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12V4y1V73A/">视频链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>引入了树枝去重和数层去重的概念<br>同一个树枝下，是可以用重复的数字的<br>我们要去重的是同一树层上的“使用过”。<br>加一个bool型数组used，用来记录同一树枝上的元素是否使用过。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">    vector&lt;int&gt; path;</span><br><span class="line">    void backtraing(vector&lt;int&gt;&amp; candidates, int target,int index,vector&lt;bool&gt;&amp; used)&#123;</span><br><span class="line">        if(target==0)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //数层去重，从不同的节点开始搜索</span><br><span class="line">        for(int i=index;i&lt;candidates.size();i++)&#123;</span><br><span class="line">            if(candidates[i]&gt;target) return;</span><br><span class="line">            if(i&gt;0&amp;&amp;candidates[i]==candidates[i-1]&amp;&amp;used[i-1]==false)&#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            used[i]=true;</span><br><span class="line">            path.push_back(candidates[i]);</span><br><span class="line">            backtraing(candidates,target-candidates[i],i+1,used);</span><br><span class="line">            path.pop_back();</span><br><span class="line">            used[i]=false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        vector&lt;bool&gt; used(candidates.size(), false);</span><br><span class="line">        backtraing(candidates,target,0,used);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="131-分割回文串"><a href="#131-分割回文串" class="headerlink" title="131.分割回文串"></a>131.分割回文串</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-partitioning/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1c54y1e7k6/">视频链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>本题难在怎么样模拟切割这个动作，其实切割问题类似组合问题<br>例如对于字符串abcdef：</p>
-<ul>
-<li>组合问题：选取一个a之后，在bcdef中再去选取第二个，选取b之后在cdef中再选取第三个…..。</li>
-<li>切割问题：切割一个a之后，在bcdef中再去切割第二段，切割b之后在cdef中再切割第三段…..。</li>
-</ul>
-<p>所以用index标记切割位置，如果超过字符串长度则成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">    vector&lt;string&gt; path; // 放已经回文的子串</span><br><span class="line">    bool isPalindrome(const string&amp; s, int start, int end) &#123;</span><br><span class="line">     for (int i = start, j = end; i &lt; j; i++, j--) &#123;</span><br><span class="line">         if (s[i] != s[j]) &#123;</span><br><span class="line">             return false;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return true;</span><br><span class="line"> &#125;</span><br><span class="line">    void backtracking (const string&amp; s, int startIndex)&#123;</span><br><span class="line">        if(startIndex&gt;=s.size())&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=startIndex;i&lt;s.size();i++)&#123;</span><br><span class="line">            if(isPalindrome(s,startIndex,i))&#123;</span><br><span class="line">                string str = s.substr(startIndex, i - startIndex + 1);</span><br><span class="line">                path.push_back(str);</span><br><span class="line">            &#125;</span><br><span class="line">            else continue;</span><br><span class="line">            backtracking(s,i+1);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; partition(string s) &#123;</span><br><span class="line">        backtracking(s,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/">展开全文 >></a>
         </p>
       
 

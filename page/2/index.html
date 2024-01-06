@@ -152,6 +152,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第23天39组合总和40-组合总和II131-分割回文串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/">第23天39组合总和40.组合总和II131.分割回文串</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/" class="archive-article-date">
+  	<time datetime="2023-12-26T15:02:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="39组合总和"><a href="#39组合总和" class="headerlink" title="39组合总和"></a>39组合总和</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1KT4y1M7HJ/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>一个集合来求组合的话，就需要startIndex来记录上一层的位置，本题判断相等就压入结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">    vector&lt;int&gt; path;</span><br><span class="line">    void backtracing(vector&lt;int&gt;&amp; candidates, int target,int index)&#123;</span><br><span class="line">        if(target&lt;0) return;</span><br><span class="line">        if(target==0)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=index;i&lt;candidates.size();i++)&#123;</span><br><span class="line">            if(target&lt;candidates[i]) return;</span><br><span class="line">            path.push_back(candidates[i]);</span><br><span class="line">            backtracing(candidates,target-candidates[i],i);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        sort(candidates.begin(), candidates.end()); // 需要排序</span><br><span class="line">        backtracing(candidates,target,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="40-组合总和II"><a href="#40-组合总和II" class="headerlink" title="40.组合总和II"></a>40.组合总和II</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-ii/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12V4y1V73A/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>引入了树枝去重和数层去重的概念<br>同一个树枝下，是可以用重复的数字的<br>我们要去重的是同一树层上的“使用过”。<br>加一个bool型数组used，用来记录同一树枝上的元素是否使用过。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">    vector&lt;int&gt; path;</span><br><span class="line">    void backtraing(vector&lt;int&gt;&amp; candidates, int target,int index,vector&lt;bool&gt;&amp; used)&#123;</span><br><span class="line">        if(target==0)&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //数层去重，从不同的节点开始搜索</span><br><span class="line">        for(int i=index;i&lt;candidates.size();i++)&#123;</span><br><span class="line">            if(candidates[i]&gt;target) return;</span><br><span class="line">            if(i&gt;0&amp;&amp;candidates[i]==candidates[i-1]&amp;&amp;used[i-1]==false)&#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            used[i]=true;</span><br><span class="line">            path.push_back(candidates[i]);</span><br><span class="line">            backtraing(candidates,target-candidates[i],i+1,used);</span><br><span class="line">            path.pop_back();</span><br><span class="line">            used[i]=false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) &#123;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        vector&lt;bool&gt; used(candidates.size(), false);</span><br><span class="line">        backtraing(candidates,target,0,used);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="131-分割回文串"><a href="#131-分割回文串" class="headerlink" title="131.分割回文串"></a>131.分割回文串</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-partitioning/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1c54y1e7k6/">视频链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>本题难在怎么样模拟切割这个动作，其实切割问题类似组合问题<br>例如对于字符串abcdef：</p>
+<ul>
+<li>组合问题：选取一个a之后，在bcdef中再去选取第二个，选取b之后在cdef中再选取第三个…..。</li>
+<li>切割问题：切割一个a之后，在bcdef中再去切割第二段，切割b之后在cdef中再切割第三段…..。</li>
+</ul>
+<p>所以用index标记切割位置，如果超过字符串长度则成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">    vector&lt;string&gt; path; // 放已经回文的子串</span><br><span class="line">    bool isPalindrome(const string&amp; s, int start, int end) &#123;</span><br><span class="line">     for (int i = start, j = end; i &lt; j; i++, j--) &#123;</span><br><span class="line">         if (s[i] != s[j]) &#123;</span><br><span class="line">             return false;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     return true;</span><br><span class="line"> &#125;</span><br><span class="line">    void backtracking (const string&amp; s, int startIndex)&#123;</span><br><span class="line">        if(startIndex&gt;=s.size())&#123;</span><br><span class="line">            result.push_back(path);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=startIndex;i&lt;s.size();i++)&#123;</span><br><span class="line">            if(isPalindrome(s,startIndex,i))&#123;</span><br><span class="line">                string str = s.substr(startIndex, i - startIndex + 1);</span><br><span class="line">                path.push_back(str);</span><br><span class="line">            &#125;</span><br><span class="line">            else continue;</span><br><span class="line">            backtracking(s,i+1);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; partition(string s) &#123;</span><br><span class="line">        backtracking(s,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC23%E5%A4%A939%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C40-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII131-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第22天216组合总和III17-电话号码的字母组合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -786,85 +861,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第13天层序遍历，226翻转二叉树，101对称二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">第13天层序遍历，226翻转二叉树，101对称二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2023-12-13T02:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GY4y1u7b2/">视频链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>层序遍历就是广度优先搜索，是模板题，一次压入一层</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;TreeNode*&gt; que;</span><br><span class="line">       if (root != NULL) que.push(root);</span><br><span class="line">       vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">       while(!que.empty())&#123;</span><br><span class="line">           int size=que.size();</span><br><span class="line">           vector&lt;int&gt; vec;</span><br><span class="line">           for(int i=0;i&lt;size;i++)&#123;</span><br><span class="line">               TreeNode* cur=que.front();</span><br><span class="line">               que.pop();</span><br><span class="line">               vec.push_back(cur-&gt;val);</span><br><span class="line">               if(cur-&gt;left) que.push(cur-&gt;left);</span><br><span class="line">               if(cur-&gt;right) que.push(cur-&gt;right);</span><br><span class="line">           &#125;</span><br><span class="line">           result.push_back(vec);</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br></pre></td></tr></table></figure>
-
-<h1 id="226翻转二叉树"><a href="#226翻转二叉树" class="headerlink" title="226翻转二叉树"></a>226翻转二叉树</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sP4y1f7q7/">视频链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>可以使用递归，也可以使用层序遍历</p>
-<p>此题中序会重复交换一些节点，以前序为例子<br>先进行交换左右孩子节点，然后反转左子树，反转右子树。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (root == NULL) return root;</span><br><span class="line">        swap(root-&gt;left, root-&gt;right);  // 中</span><br><span class="line">        invertTree(root-&gt;left);         // 左</span><br><span class="line">        invertTree(root-&gt;right);        // 右</span><br><span class="line">        return root;</span><br></pre></td></tr></table></figure>
-
-<h1 id="101对称二叉树"><a href="#101对称二叉树" class="headerlink" title="101对称二叉树"></a>101对称二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ue4y1Y7Mf/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ue4y1Y7Mf/">视频链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>遍历二叉树的重点在于，明确遍历方式。本题遍历只能是“后序遍历”，因为我们要通过递归函数的返回值来判断两个子树的内侧节点和外侧节点是否相等。</p>
-<ol>
-<li>确定递归函数的参数和返回值<br>判断左右子树是否相等，参数为左右子树，返回值为bool<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool compare(TreeNode* left, TreeNode* right)</span><br></pre></td></tr></table></figure></li>
-<li>确认终止条件<br>这里麻烦一点，先判断一边为空一边不为空，再判断值是否相等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (left == NULL &amp;&amp; right != NULL) return false;</span><br><span class="line">else if(left!=NULL &amp;&amp; right == NULL ) return false;</span><br><span class="line">else if(left==NULL &amp;&amp; right ==NULL) return true;</span><br><span class="line">else if (left-&gt;val != right-&gt;val) return false;</span><br></pre></td></tr></table></figure></li>
-<li>单层处理逻辑</li>
-</ol>
-<p>单层递归的逻辑就是处理左右节点都不为空，且数值相同的情况</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool outside=compare(left-&gt;left,right-&gt;right);</span><br><span class="line">bool inside=compare(left-&gt;right,right-&gt;left);</span><br><span class="line">return outside&amp;&amp;inside;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
         </p>
       
 

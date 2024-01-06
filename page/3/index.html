@@ -152,6 +152,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第13天层序遍历，226翻转二叉树，101对称二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">第13天层序遍历，226翻转二叉树，101对称二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2023-12-13T02:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GY4y1u7b2/">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>层序遍历就是广度优先搜索，是模板题，一次压入一层</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;TreeNode*&gt; que;</span><br><span class="line">       if (root != NULL) que.push(root);</span><br><span class="line">       vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">       while(!que.empty())&#123;</span><br><span class="line">           int size=que.size();</span><br><span class="line">           vector&lt;int&gt; vec;</span><br><span class="line">           for(int i=0;i&lt;size;i++)&#123;</span><br><span class="line">               TreeNode* cur=que.front();</span><br><span class="line">               que.pop();</span><br><span class="line">               vec.push_back(cur-&gt;val);</span><br><span class="line">               if(cur-&gt;left) que.push(cur-&gt;left);</span><br><span class="line">               if(cur-&gt;right) que.push(cur-&gt;right);</span><br><span class="line">           &#125;</span><br><span class="line">           result.push_back(vec);</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br></pre></td></tr></table></figure>
+
+<h1 id="226翻转二叉树"><a href="#226翻转二叉树" class="headerlink" title="226翻转二叉树"></a>226翻转二叉树</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sP4y1f7q7/">视频链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>可以使用递归，也可以使用层序遍历</p>
+<p>此题中序会重复交换一些节点，以前序为例子<br>先进行交换左右孩子节点，然后反转左子树，反转右子树。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (root == NULL) return root;</span><br><span class="line">        swap(root-&gt;left, root-&gt;right);  // 中</span><br><span class="line">        invertTree(root-&gt;left);         // 左</span><br><span class="line">        invertTree(root-&gt;right);        // 右</span><br><span class="line">        return root;</span><br></pre></td></tr></table></figure>
+
+<h1 id="101对称二叉树"><a href="#101对称二叉树" class="headerlink" title="101对称二叉树"></a>101对称二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ue4y1Y7Mf/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ue4y1Y7Mf/">视频链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>遍历二叉树的重点在于，明确遍历方式。本题遍历只能是“后序遍历”，因为我们要通过递归函数的返回值来判断两个子树的内侧节点和外侧节点是否相等。</p>
+<ol>
+<li>确定递归函数的参数和返回值<br>判断左右子树是否相等，参数为左右子树，返回值为bool<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool compare(TreeNode* left, TreeNode* right)</span><br></pre></td></tr></table></figure></li>
+<li>确认终止条件<br>这里麻烦一点，先判断一边为空一边不为空，再判断值是否相等<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (left == NULL &amp;&amp; right != NULL) return false;</span><br><span class="line">else if(left!=NULL &amp;&amp; right == NULL ) return false;</span><br><span class="line">else if(left==NULL &amp;&amp; right ==NULL) return true;</span><br><span class="line">else if (left-&gt;val != right-&gt;val) return false;</span><br></pre></td></tr></table></figure></li>
+<li>单层处理逻辑</li>
+</ol>
+<p>单层递归的逻辑就是处理左右节点都不为空，且数值相同的情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool outside=compare(left-&gt;left,right-&gt;right);</span><br><span class="line">bool inside=compare(left-&gt;right,right-&gt;left);</span><br><span class="line">return outside&amp;&amp;inside;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/13/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC13%E5%A4%A9%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%8C226%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C101%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第12天二叉树的各种遍历" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -855,83 +934,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第三天203-移除链表元素，707-设计链表，206-反转链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">第三天203.移除链表元素，707.设计链表，206.反转链表</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2023-12-02T07:18:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="203-移除链表元素"><a href="#203-移除链表元素" class="headerlink" title="203.移除链表元素"></a>203.移除链表元素</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-linked-list-elements/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18B4y1s7R9/">视频链接</a></p>
-</blockquote>
-<p>加头节点同一判断，没啥好说的</p>
-<h1 id="707-设计链表"><a href="#707-设计链表" class="headerlink" title="707.设计链表"></a>707.设计链表</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-linked-list/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FU4y1X7WD/">视频链接</a></p>
-</blockquote>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>链表的基本操作,代码如下，就是addAtIndex条件多一点稍微特殊一点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">class MyLinkedList &#123;</span><br><span class="line">public:</span><br><span class="line">    struct LinkNode&#123;</span><br><span class="line">        int val;</span><br><span class="line">        LinkNode* next;</span><br><span class="line">        LinkNode(int val): val(val),next(NULL)&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    int size;</span><br><span class="line">    LinkNode* dummy;</span><br><span class="line">    MyLinkedList() &#123;</span><br><span class="line">        size=0;</span><br><span class="line">        dummy =new LinkNode(0);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int get(int index) &#123;</span><br><span class="line">        if(index&gt;=size||index&lt;0) return -1;</span><br><span class="line">        LinkNode* cur=dummy-&gt;next;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        return cur-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtHead(int val) &#123;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        LinkNode* tmp=dummy-&gt;next;</span><br><span class="line">        dummy-&gt;next=node;</span><br><span class="line">        node-&gt;next=tmp;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtTail(int val) &#123;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        int num=size;</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(num&gt;0)&#123;</span><br><span class="line">            num--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;//指向尾部</span><br><span class="line">        cur-&gt;next=node;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addAtIndex(int index, int val) &#123;</span><br><span class="line">        if(index&gt;size) return;</span><br><span class="line">        if(index&lt;0) size=0;//就这里错了，=size的时候插入到尾部，用get检查报错</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkNode* node=new LinkNode(val);</span><br><span class="line">        LinkNode* tmp=cur-&gt;next;</span><br><span class="line">        cur-&gt;next=node;</span><br><span class="line">        node-&gt;next=tmp;</span><br><span class="line">        size++;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void deleteAtIndex(int index) &#123;</span><br><span class="line">        if(get(index)==-1) return;</span><br><span class="line">        LinkNode* cur=dummy;</span><br><span class="line">        while(index&gt;0)&#123;</span><br><span class="line">            index--;</span><br><span class="line">            cur=cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkNode* tmp=cur-&gt;next;</span><br><span class="line">        cur-&gt;next=tmp-&gt;next;</span><br><span class="line">        delete tmp;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206.反转链表"></a>206.反转链表</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nB4y1i7eL/">视频链接</a></p>
-</blockquote>
-<p>双指针顺着链表操作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ListNode* tmp; // 保存cur的下一个节点</span><br><span class="line">        ListNode* cur = head;</span><br><span class="line">        ListNode* pre = NULL;</span><br><span class="line">        while(cur!=NULL)&#123;</span><br><span class="line">            tmp=cur-&gt;next;</span><br><span class="line">            cur-&gt;next=pre;</span><br><span class="line">            pre=cur;</span><br><span class="line">            cur=tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        return pre;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%B8%89%E5%A4%A9203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0%EF%BC%8C707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8%EF%BC%8C206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">展开全文 >></a>
         </p>
       
 
