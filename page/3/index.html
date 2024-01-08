@@ -152,6 +152,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第14天104-二叉树的最大深度559-n叉树的最大深度111-二叉树的最小深度，222-完全二叉树的节点个数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">第14天104.二叉树的最大深度559.n叉树的最大深度111.二叉树的最小深度，222.完全二叉树的节点个数</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2023-12-14T02:59:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="104-二叉树的最大深度"><a href="#104-二叉树的最大深度" class="headerlink" title="104.二叉树的最大深度"></a>104.二叉树的最大深度</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gd4y1V75u/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题可以用前序或者后序，后序求高度，先遍历到最后一个节点，一层一层向上返回答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int getdepth(TreeNode* node)&#123;</span><br><span class="line">        if(node==NULL) return 0;</span><br><span class="line">        int left=getdepth(node-&gt;left);</span><br><span class="line">        int right=getdepth(node-&gt;right);</span><br><span class="line">        int depth=1+max(left,right);</span><br><span class="line">        return depth;</span><br><span class="line">    &#125;</span><br><span class="line">    int maxDepth(TreeNode* root) &#123;</span><br><span class="line">        return getdepth(root);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="559-n叉树的最大深度"><a href="#559-n叉树的最大深度" class="headerlink" title="559.n叉树的最大深度"></a>559.n叉树的最大深度</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>这个题就是两叉树变成多叉树，是一样的</p>
+<h1 id="111-二叉树的最小深度"><a href="#111-二叉树的最小深度" class="headerlink" title="111.二叉树的最小深度"></a>111.二叉树的最小深度</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1QD4y1B7e2/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>还是可以用后序遍历做，但是不一样的是最小深度要求两个叶子节点为空</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if(root==NULL) return 0;</span><br><span class="line">        int left=minDepth(root-&gt;left);</span><br><span class="line">        int right=minDepth(root-&gt;right);</span><br><span class="line"></span><br><span class="line">        if(root-&gt;left==NULL&amp;&amp;root-&gt;right!=NULL) return 1+right;</span><br><span class="line">        if(root-&gt;right==NULL&amp;&amp;root-&gt;left!=NULL) return 1+left;</span><br><span class="line"></span><br><span class="line">        int res=1+min(left,right);</span><br><span class="line">        return res;</span><br></pre></td></tr></table></figure>
+<h1 id="222-完全二叉树的节点个数"><a href="#222-完全二叉树的节点个数" class="headerlink" title="222.完全二叉树的节点个数"></a>222.完全二叉树的节点个数</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eW4y1B7pD/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-complete-tree-nodes/">题目链接</a></p>
+<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>延续上一题的思路，使用后序遍历还是可以解决，返回左右子树的节点和+1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int getNode(TreeNode* cur)&#123;</span><br><span class="line">        if(cur==NULL) return 0;</span><br><span class="line">        int left=getNode(cur-&gt;left);</span><br><span class="line">        int right=getNode(cur-&gt;right);</span><br><span class="line">        return 1+left+right;</span><br><span class="line">    &#125;</span><br><span class="line">    int countNodes(TreeNode* root) &#123;</span><br><span class="line">        return getNode(root);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/14/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC14%E5%A4%A9104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6559-n%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%EF%BC%8C222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第13天层序遍历，226翻转二叉树，101对称二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -843,97 +915,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第四天24，19，面试题02-07链表相交，142环形链表2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">第四天24，19，面试题02.07链表相交，142环形链表2</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/" class="archive-article-date">
-  	<time datetime="2023-12-02T08:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>24和19略过</p>
-<h1 id="面试题-02-07-链表相交"><a href="#面试题-02-07-链表相交" class="headerlink" title="面试题 02.07. 链表相交"></a>面试题 02.07. 链表相交</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a></p>
-</blockquote>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题重点是求出两个链表的长度差，长的向短的对齐，为了方便操作，把curA设置成长的，对齐之后一一对比</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ListNode* curA = headA;</span><br><span class="line">        ListNode* curB = headB;</span><br><span class="line">        int lenA = 0, lenB = 0;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            lenA++;</span><br><span class="line">            curA=curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curB!=NULL)&#123;</span><br><span class="line">            lenB++;</span><br><span class="line">            curB=curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curA = headA;</span><br><span class="line">        curB = headB;</span><br><span class="line">        // 让curA为最长链表的头，lenA为其长度</span><br><span class="line">        if (lenB &gt; lenA) &#123;</span><br><span class="line">            swap (lenA, lenB);</span><br><span class="line">            swap (curA, curB);</span><br><span class="line">        &#125;</span><br><span class="line">        // 求长度差</span><br><span class="line">        int gap = lenA - lenB;</span><br><span class="line">        // 让curA和curB在同一起点上（末尾位置对齐）</span><br><span class="line">        while (gap--) &#123;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            if(curA==curB) return curA;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br></pre></td></tr></table></figure>
-<h1 id="142环形链表2"><a href="#142环形链表2" class="headerlink" title="142环形链表2"></a>142环形链表2</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1if4y1d7ob/">视频链接</a></p>
-</blockquote>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>有两个问题</p>
-<ul>
-<li>怎么判断有环</li>
-<li>怎么判断入口</li>
-</ul>
-<p>使用快慢指针法，分别定义 fast 和 slow 指针，从头结点出发，fast指针每次移动两个节点，slow指针每次移动一个节点，如果 fast 和 slow指针在途中相遇 ，说明这个链表有环。</p>
-<p>判断环的入口主要是数学问题</p>
-<p>假设从头结点到环形入口节点 的节点数为x。 环形入口节点到 fast指针与slow指针相遇节点 节点数为y。 从相遇节点 再到环形入口节点节点数为 z。 如图所示：<br><img src="/assets/judge_round.png" alt="判断环"></p>
-<p>那么相遇时： slow指针走过的节点数为: x + y， fast指针走过的节点数：x + y + n (y + z)，n为fast指针在环内走了n圈才遇到slow指针， （y+z）为 一圈内节点的个数A。</p>
-<p>又快指针走的距离是慢指针的两倍，</p>
-<blockquote>
-<p>(x + y) * 2 &#x3D; x + y + n (y + z)<br>x &#x3D; n (y + z) - y</p>
-</blockquote>
-<p>fast至少多走了一圈,n&gt;&#x3D;1，我们提一个（y+z）出来</p>
-<blockquote>
-<p>x &#x3D; (n - 1) (y + z) + z</p>
-</blockquote>
-<p><strong>这就意味着，从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。</strong></p>
-<p>那代码就不难了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ListNode* fast = head;</span><br><span class="line">        ListNode* slow = head;</span><br><span class="line">        while(fast!=NULL&amp;&amp;fast-&gt;next!=NULL)&#123;</span><br><span class="line">            slow=slow-&gt;next;</span><br><span class="line">            fast=fast-&gt;next-&gt;next;</span><br><span class="line">            if(slow==fast)&#123;</span><br><span class="line">                slow=head;</span><br><span class="line">                while(slow!=fast)&#123;</span><br><span class="line">                    slow=slow-&gt;next;</span><br><span class="line">                    fast=fast-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                return slow;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">展开全文 >></a>
         </p>
       
 

@@ -152,6 +152,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第四天24，19，面试题02-07链表相交，142环形链表2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">第四天24，19，面试题02.07链表相交，142环形链表2</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/" class="archive-article-date">
+  	<time datetime="2023-12-02T08:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>24和19略过</p>
+<h1 id="面试题-02-07-链表相交"><a href="#面试题-02-07-链表相交" class="headerlink" title="面试题 02.07. 链表相交"></a>面试题 02.07. 链表相交</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a></p>
+</blockquote>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题重点是求出两个链表的长度差，长的向短的对齐，为了方便操作，把curA设置成长的，对齐之后一一对比</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ListNode* curA = headA;</span><br><span class="line">        ListNode* curB = headB;</span><br><span class="line">        int lenA = 0, lenB = 0;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            lenA++;</span><br><span class="line">            curA=curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curB!=NULL)&#123;</span><br><span class="line">            lenB++;</span><br><span class="line">            curB=curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curA = headA;</span><br><span class="line">        curB = headB;</span><br><span class="line">        // 让curA为最长链表的头，lenA为其长度</span><br><span class="line">        if (lenB &gt; lenA) &#123;</span><br><span class="line">            swap (lenA, lenB);</span><br><span class="line">            swap (curA, curB);</span><br><span class="line">        &#125;</span><br><span class="line">        // 求长度差</span><br><span class="line">        int gap = lenA - lenB;</span><br><span class="line">        // 让curA和curB在同一起点上（末尾位置对齐）</span><br><span class="line">        while (gap--) &#123;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(curA!=NULL)&#123;</span><br><span class="line">            if(curA==curB) return curA;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br></pre></td></tr></table></figure>
+<h1 id="142环形链表2"><a href="#142环形链表2" class="headerlink" title="142环形链表2"></a>142环形链表2</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/">题目链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1if4y1d7ob/">视频链接</a></p>
+</blockquote>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>有两个问题</p>
+<ul>
+<li>怎么判断有环</li>
+<li>怎么判断入口</li>
+</ul>
+<p>使用快慢指针法，分别定义 fast 和 slow 指针，从头结点出发，fast指针每次移动两个节点，slow指针每次移动一个节点，如果 fast 和 slow指针在途中相遇 ，说明这个链表有环。</p>
+<p>判断环的入口主要是数学问题</p>
+<p>假设从头结点到环形入口节点 的节点数为x。 环形入口节点到 fast指针与slow指针相遇节点 节点数为y。 从相遇节点 再到环形入口节点节点数为 z。 如图所示：<br><img src="/assets/judge_round.png" alt="判断环"></p>
+<p>那么相遇时： slow指针走过的节点数为: x + y， fast指针走过的节点数：x + y + n (y + z)，n为fast指针在环内走了n圈才遇到slow指针， （y+z）为 一圈内节点的个数A。</p>
+<p>又快指针走的距离是慢指针的两倍，</p>
+<blockquote>
+<p>(x + y) * 2 &#x3D; x + y + n (y + z)<br>x &#x3D; n (y + z) - y</p>
+</blockquote>
+<p>fast至少多走了一圈,n&gt;&#x3D;1，我们提一个（y+z）出来</p>
+<blockquote>
+<p>x &#x3D; (n - 1) (y + z) + z</p>
+</blockquote>
+<p><strong>这就意味着，从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。</strong></p>
+<p>那代码就不难了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ListNode* fast = head;</span><br><span class="line">        ListNode* slow = head;</span><br><span class="line">        while(fast!=NULL&amp;&amp;fast-&gt;next!=NULL)&#123;</span><br><span class="line">            slow=slow-&gt;next;</span><br><span class="line">            fast=fast-&gt;next-&gt;next;</span><br><span class="line">            if(slow==fast)&#123;</span><br><span class="line">                slow=head;</span><br><span class="line">                while(slow!=fast)&#123;</span><br><span class="line">                    slow=slow-&gt;next;</span><br><span class="line">                    fast=fast-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                return slow;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return NULL;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E5%9B%9B%E5%A4%A924%EF%BC%8C19%EF%BC%8C%E9%9D%A2%E8%AF%95%E9%A2%9802-07%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4%EF%BC%8C142%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第三天203-移除链表元素，707-设计链表，206-反转链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

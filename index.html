@@ -152,6 +152,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第35天●-343-整数拆分96-不同的二叉搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">第35天● 343. 整数拆分96.不同的二叉搜索树</a>
+    </h1>
+  
+
+        
+        <a href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2024-01-08T02:24:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="343-整数拆分"><a href="#343-整数拆分" class="headerlink" title="343. 整数拆分"></a>343. 整数拆分</h1><p><a href="">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-break/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ol>
+<li>dp含义<br>dp[i]：分拆数字i，可以得到的最大乘积为dp[i]</li>
+<li>递推公式<br>dp[i]由j * (i - j)，这种拆成两个数字相乘<br>d[j]*dp[i-j]这种由两个及以上的数字相乘，每次取最大</li>
+<li>初始化<br>dp[2]&#x3D;1,dp[3]&#x3D;2</li>
+<li>遍历顺序<br>从前往后</li>
+</ol>
+<p>总体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int integerBreak(int n) &#123;</span><br><span class="line">        vector&lt;int&gt; dp(n + 1);</span><br><span class="line">        dp[2] = 1;</span><br><span class="line">        dp[3] = 2;</span><br><span class="line">        for(int i=4;i&lt;=n;i++)&#123;</span><br><span class="line">            for(int j=1;j&lt;=i/2;j++)&#123;</span><br><span class="line">                dp[i]=max(max((i - j) * j, dp[i - j] * j),dp[i]);</span><br><span class="line">                //cout&lt;&lt;&quot;i= &quot;&lt;&lt;i &lt;&lt;&quot; &quot;&lt;&lt;dp[i]&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="96-不同的二叉搜索树"><a href="#96-不同的二叉搜索树" class="headerlink" title="96.不同的二叉搜索树"></a>96.不同的二叉搜索树</h1><p><a href="">视频链接</a><br><a href="">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p><img src="/assets/different_BST.png"><br>这个题难在递推公式的确定，以3为例子<br>左子树的大小从0到2<br>dp[3]&#x3D;dp[0]*dp[2]+d[1]*dp[1]+dp[2]*d[0]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int numTrees(int n) &#123;</span><br><span class="line">        vector&lt;int&gt; dp(n+1);</span><br><span class="line">        dp[0]=1;</span><br><span class="line">        dp[1]=0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            for(int j=0;j&lt;i;j++)&#123;</span><br><span class="line">                dp[i]+=dp[i-j-1]*dp[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第34天62不同路径63不同路径2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -785,77 +859,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第24天93复原IP地址78子集90-子集II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC24%E5%A4%A993%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%8078%E5%AD%90%E9%9B%8690-%E5%AD%90%E9%9B%86II/">第24天93复原IP地址78子集90.子集II</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC24%E5%A4%A993%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%8078%E5%AD%90%E9%9B%8690-%E5%AD%90%E9%9B%86II/" class="archive-article-date">
-  	<time datetime="2023-12-27T03:34:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="93复原IP地址"><a href="#93复原IP地址" class="headerlink" title="93复原IP地址"></a>93复原IP地址</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XP4y1U73i/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/restore-ip-addresses/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>这题和分割回文串有点区别，首先要加入逗点，要修改s字符串，其次所以不能用切割线切到最后作为终止条件，而是分割的段数作为终止条件，加入3个逗点之后，判断剩下的是否合法</p>
-<p>本题和分割回文串还有一点区别<br><strong>这里碰到不合法的字符串就不用向后遍历了，而分割回文串要把一层遍历完</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;string&gt; result;// 记录结果</span><br><span class="line">    void backtracing(string&amp; s,int startindex,int pointnum)&#123;</span><br><span class="line">        if(pointnum==3)&#123;</span><br><span class="line">            if(isValid(s,startindex,s.size()-1)) result.push_back(s);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=startindex;i&lt;s.size();i++)&#123;</span><br><span class="line">            if(isValid(s,startindex,i))&#123;</span><br><span class="line">                s.insert(s.begin() + i + 1 , &#x27;.&#x27;);</span><br><span class="line">                pointnum++;</span><br><span class="line">                backtracing(s,i+2,pointnum);</span><br><span class="line">                pointnum--;</span><br><span class="line">                s.erase(s.begin() + i + 1);</span><br><span class="line">            &#125;</span><br><span class="line">            else break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     bool isValid(const string&amp; s, int start, int end) &#123;</span><br><span class="line">        if (start &gt; end) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (s[start] == &#x27;0&#x27; &amp;&amp; start != end) &#123; // 0开头的数字不合法</span><br><span class="line">                return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int num = 0;</span><br><span class="line">        for (int i = start; i &lt;= end; i++) &#123;</span><br><span class="line">            if (s[i] &gt; &#x27;9&#x27; || s[i] &lt; &#x27;0&#x27;) &#123; // 遇到非数字字符不合法</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            num = num * 10 + (s[i] - &#x27;0&#x27;);</span><br><span class="line">            if (num &gt; 255) &#123; // 如果大于255了不合法</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;string&gt; restoreIpAddresses(string s) &#123;</span><br><span class="line">        backtracing(s,0,0);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="78子集"><a href="#78子集" class="headerlink" title="78子集"></a>78子集</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1U84y1q7Ci/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets/">题目链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>如果把 子集问题、组合问题、分割问题都抽象为一棵树的话，那么组合问题和分割问题都是收集树的叶子节点，而子集问题是找树的所有节点！<br>所以收集子集要放到最上面</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; path;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">   void backtracing(vector&lt;int&gt;&amp; nums,int startindex)&#123;</span><br><span class="line">       result.push_back(path);</span><br><span class="line">       if(startindex&gt;=nums.size()) return;</span><br><span class="line">       for(int i=startindex;i&lt;nums.size();i++)&#123;</span><br><span class="line">           path.push_back(nums[i]);</span><br><span class="line">           backtracing(nums,i+1);</span><br><span class="line">           path.pop_back();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       backtracing(nums,0);</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="90-子集II"><a href="#90-子集II" class="headerlink" title="90.子集II"></a>90.子集II</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vm4y1F71J/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/subsets-ii/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>引入了树枝和数层，数层需要去重，for循环只是横向的数层遍历，这里要去重</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">    vector&lt;int&gt; path;</span><br><span class="line">    void backtracing(vector&lt;int&gt;&amp; nums, int startIndex, vector&lt;bool&gt;&amp; used)&#123;</span><br><span class="line">        result.push_back(path);</span><br><span class="line">        for(int i=startIndex;i&lt;nums.size();i++)&#123;</span><br><span class="line">            if(i &gt; 0 &amp;&amp; nums[i] == nums[i - 1] &amp;&amp; used[i - 1] == false)</span><br><span class="line">                continue;</span><br><span class="line">            used[i]=true;</span><br><span class="line">            path.push_back(nums[i]);</span><br><span class="line">            backtracing(nums,i+1,used);</span><br><span class="line">            path.pop_back();</span><br><span class="line">            used[i]=false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; subsetsWithDup(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        vector&lt;bool&gt; used(nums.size(),false);</span><br><span class="line">        backtracing(nums,0,used);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;  </span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC24%E5%A4%A993%E5%A4%8D%E5%8E%9FIP%E5%9C%B0%E5%9D%8078%E5%AD%90%E9%9B%8690-%E5%AD%90%E9%9B%86II/">展开全文 >></a>
         </p>
       
 
