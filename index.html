@@ -152,6 +152,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第36天01背包和01背包滚动数组416分割等和子集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/">第36天01背包和01背包滚动数组416分割等和子集</a>
+    </h1>
+  
+
+        
+        <a href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/" class="archive-article-date">
+  	<time datetime="2024-01-09T03:24:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="01背包滚动数组"><a href="#01背包滚动数组" class="headerlink" title="01背包滚动数组"></a>01背包滚动数组</h1><ol>
+<li><p>确定dp数组的定义<br>在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]。</p>
+</li>
+<li><p>一维dp数组的递推公式<br>dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。<br>dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包 加上 物品i的价值。（也就是容量为j的背包，放入物品i了之后的价值即：dp[j]）<br>此时dp[j]有两个选择，一个是取自己dp[j] 相当于 二维dp数组中的dp[i-1][j]，即不放物品i，一个是取dp[j - weight[i]] + value[i]，即放物品i，指定是取最大的，毕竟是求最大价值。滚动数组就是把二维数组压缩为1维数组，这里没有[i]这个维度<br>不选就是上一层的d[i-1][j]</p>
+</li>
+<li><p>初始化<br>为0</p>
+</li>
+<li><p>遍历顺序<br>因为背包问题要依赖前面的状态，如果从前到后遍历会重复取物品</p>
+</li>
+</ol>
+<h1 id="416分割等和子集"><a href="#416分割等和子集" class="headerlink" title="416分割等和子集"></a>416分割等和子集</h1><p><a href="">题目链接</a><br><a href="">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
+<li>背包的体积为sum &#x2F; 2</li>
+<li>背包要放入的商品（集合里的元素）重量为 元素的数值，价值也为元素的数值</li>
+<li>背包如果正好装满，说明找到了总和为 sum &#x2F; 2 的子集。</li>
+<li>背包中每一个元素是不可重复放入。</li>
+</ul>
+<p>dp[j] 表示： 容量为j的背包，所背的物品价值最大可以为dp[j]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">bool canPartition(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       int sum=0;</span><br><span class="line">       for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">           sum+=nums[i];</span><br><span class="line">       &#125;</span><br><span class="line">       if(sum%2==1) return false;</span><br><span class="line">       int target=sum/2;</span><br><span class="line">       vector&lt;int&gt; dp(10001, 0);</span><br><span class="line">       for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">           for(int j=target;j&gt;=nums[i];j--)&#123;</span><br><span class="line">               dp[j]=max(dp[j],dp[j-nums[i]]+nums[i]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if(dp[target]==target) return true;</span><br><span class="line">       else return false;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第35天●-343-整数拆分96-不同的二叉搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -793,72 +873,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC26%E5%A4%A9332-%E9%87%8D%E6%96%B0%E5%AE%89%E6%8E%92%E8%A1%8C%E7%A8%8B51N%E7%9A%87%E5%90%8E37%E8%A7%A3%E6%95%B0%E7%8B%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第25天491递增子序列46全排列47全排列II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/">第25天491递增子序列46全排列47全排列II</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/" class="archive-article-date">
-  	<time datetime="2023-12-27T05:44:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="491递增子序列"><a href="#491递增子序列" class="headerlink" title="491递增子序列"></a>491递增子序列</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EG4y1h78v/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-decreasing-subsequences/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题特殊在同层之间不能有重复的元素<br>使用set做一个去重<br>和树枝数层使用used数组去重的区别是<br>这里每一层有自己的set，只要符合条件不重复，递增就可以，不会出现重复<br>而树枝数层求子集和组合2里面，需要考虑前一位和自己是否重复，需要used记录，判断的逻辑是<br>数层之间前一位相同且没有用过，如果used不传递那有的结果无法传入答案中，树枝之间的重复就无法处理。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">   vector&lt;int&gt; path;</span><br><span class="line">   void backtracking(vector&lt;int&gt;&amp; nums, int startIndex,unordered_set&lt;int&gt; uset)&#123;</span><br><span class="line">       if (path.size() &gt; 1) &#123;</span><br><span class="line">           result.push_back(path);</span><br><span class="line">       &#125;</span><br><span class="line">       for(int i=startIndex;i&lt;nums.size();i++)&#123;</span><br><span class="line">           if( (!path.empty() &amp;&amp; nums[i] &lt; path.back())</span><br><span class="line">           || uset.find(nums[i])!=uset.end() ) continue;</span><br><span class="line">           uset.insert(nums[i]);</span><br><span class="line">           path.push_back(nums[i]);</span><br><span class="line">           backtracking(nums,i+1,uset);</span><br><span class="line">           path.pop_back();</span><br><span class="line">           uset.erase(nums[i]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; findSubsequences(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       unordered_set&lt;int&gt; uset;</span><br><span class="line">       backtracking(nums,0,uset);</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>46全排列 跳过<br>47全排列2 跳过<br>其实和组合是一样的，组合使用startindex记录位置不能选前面的，排列只需要不选已经压入结果中的数字就可以。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/">展开全文 >></a>
         </p>
       
 

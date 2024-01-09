@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第五天242有效的字母异位词，349. 两个数组的交集，第202题. 快乐数，1. 两数之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">第五天242有效的字母异位词，349. 两个数组的交集，第202题. 快乐数，1. 两数之和</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="archive-article-date">
+  	<time datetime="2023-12-03T12:10:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="242有效的字母异位词"><a href="#242有效的字母异位词" class="headerlink" title="242有效的字母异位词"></a>242有效的字母异位词</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YG411p7BA/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-anagram/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>题目中保证了小写字母，只有26种选择，比较适合使用数组做哈希表</p>
+<p>代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int hash[26]=&#123;0&#125;;</span><br><span class="line">        for(int i=0;i&lt;s.size();i++)&#123;</span><br><span class="line">            hash[s[i]-&#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;t.size();i++)&#123;</span><br><span class="line">            hash[t[i]-&#x27;a&#x27;]--;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;26;i++)&#123;</span><br><span class="line">            if(hash[i]!=0) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br></pre></td></tr></table></figure>
+
+<h1 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349. 两个数组的交集"></a>349. 两个数组的交集</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YG411p7BA/">视频链接</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ba411S7wu/">题目链接</a></p>
+<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题哈希值跨度很大，而且结果保证唯一，很适合用std::unordered_set</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unordered_set&lt;int&gt; result;</span><br><span class="line">       unordered_set&lt;int&gt; num_set(nums1.begin(), nums1.end());</span><br><span class="line">       for(int num :nums2)&#123;</span><br><span class="line">           if(num_set.find(num)!=num_set.end()) result.insert(num);</span><br><span class="line">       &#125;</span><br><span class="line">       return vector&lt;int&gt;(result.begin(), result.end());</span><br></pre></td></tr></table></figure>
+
+<h1 id="第202题-快乐数"><a href="#第202题-快乐数" class="headerlink" title="第202题. 快乐数"></a>第202题. 快乐数</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/happy-number/">题目链接</a></p>
+<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>题目中介绍了失败的结果是无限循环，只要不是无限循环那么就会得到1，也就是说这个题目重点在于判断是否有重复，很适合用std::unordered_set</p>
+<p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int getsum(int n)&#123;</span><br><span class="line">        int sum=0;</span><br><span class="line">        while(n)&#123;</span><br><span class="line">            sum+=(n%10)*(n%10);</span><br><span class="line">            n=n/10;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">    bool isHappy(int n) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; ans;</span><br><span class="line">        while(1)&#123;</span><br><span class="line">            int sum=getsum(n);</span><br><span class="line">            if(sum==1) return true;</span><br><span class="line">            else if(ans.find(sum)!=ans.end()) return false;</span><br><span class="line">            else ans.insert(sum);</span><br><span class="line"></span><br><span class="line">            n=sum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a>1. 两数之和</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">题目链接</a></p>
+<h2 id="重点-3"><a href="#重点-3" class="headerlink" title="重点"></a>重点</h2><p>遍历数组的时候，可以在集合里面查询有没有符合条件的数字，本题不仅要保存数字，还要保存数字在数组的位置，很适合用map.<br>只会存在一个有效答案,不需要key有序，同时重复的也不用考虑，只使用一个就可以了。</p>
+<p>这个题目有4个问题</p>
+<ul>
+<li>为什么会想到用哈希表</li>
+<li>哈希表为什么用map</li>
+<li>本题map是用来存什么的</li>
+<li>map中的key和value用来存什么的</li>
+</ul>
+<p>什么问题适合用哈希表？<br><strong>查询一个元素是否出现过，或者一个元素是否在集合里的时候</strong><br>这里为什么用map<br><strong>本题不仅要保存数字，还要保存数字在数组的位置</strong></p>
+<p><strong>最后一个重点，要先判断有没有合适的再插入，否则会重用自己</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">unordered_map&lt;int,int&gt; map;</span><br><span class="line">        for(int i = 0; i &lt; nums.size(); i++)&#123;     </span><br><span class="line">            int ans=target-nums[i];</span><br><span class="line">            auto it=map.find(ans);</span><br><span class="line">            if(it!=map.end()) return &#123;it-&gt;second, i&#125;;</span><br><span class="line">            map.insert(pair&lt;int,int&gt;(nums[i],i));</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC%E4%BA%94%E5%A4%A9242%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%EF%BC%8C349.%20%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%EF%BC%8C%E7%AC%AC202%E9%A2%98.%20%E5%BF%AB%E4%B9%90%E6%95%B0%EF%BC%8C1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第四天24，19，面试题02-07链表相交，142环形链表2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

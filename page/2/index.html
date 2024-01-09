@@ -152,6 +152,72 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-代码随想录/第25天491递增子序列46全排列47全排列II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/">第25天491递增子序列46全排列47全排列II</a>
+    </h1>
+  
+
+        
+        <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/" class="archive-article-date">
+  	<time datetime="2023-12-27T05:44:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="491递增子序列"><a href="#491递增子序列" class="headerlink" title="491递增子序列"></a>491递增子序列</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1EG4y1h78v/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-decreasing-subsequences/">题目链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>本题特殊在同层之间不能有重复的元素<br>使用set做一个去重<br>和树枝数层使用used数组去重的区别是<br>这里每一层有自己的set，只要符合条件不重复，递增就可以，不会出现重复<br>而树枝数层求子集和组合2里面，需要考虑前一位和自己是否重复，需要used记录，判断的逻辑是<br>数层之间前一位相同且没有用过，如果used不传递那有的结果无法传入答案中，树枝之间的重复就无法处理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; result;</span><br><span class="line">   vector&lt;int&gt; path;</span><br><span class="line">   void backtracking(vector&lt;int&gt;&amp; nums, int startIndex,unordered_set&lt;int&gt; uset)&#123;</span><br><span class="line">       if (path.size() &gt; 1) &#123;</span><br><span class="line">           result.push_back(path);</span><br><span class="line">       &#125;</span><br><span class="line">       for(int i=startIndex;i&lt;nums.size();i++)&#123;</span><br><span class="line">           if( (!path.empty() &amp;&amp; nums[i] &lt; path.back())</span><br><span class="line">           || uset.find(nums[i])!=uset.end() ) continue;</span><br><span class="line">           uset.insert(nums[i]);</span><br><span class="line">           path.push_back(nums[i]);</span><br><span class="line">           backtracking(nums,i+1,uset);</span><br><span class="line">           path.pop_back();</span><br><span class="line">           uset.erase(nums[i]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   vector&lt;vector&lt;int&gt;&gt; findSubsequences(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       unordered_set&lt;int&gt; uset;</span><br><span class="line">       backtracking(nums,0,uset);</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>46全排列 跳过<br>47全排列2 跳过<br>其实和组合是一样的，组合使用startindex记录位置不能选前面的，排列只需要不选已经压入结果中的数字就可以。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC25%E5%A4%A9491%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%9746%E5%85%A8%E6%8E%92%E5%88%9747%E5%85%A8%E6%8E%92%E5%88%97II/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-代码随想录/第24天93复原IP地址78子集90-子集II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -783,83 +849,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/12/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC16%E5%A4%A9513%E6%89%BE%E6%A0%91%E5%B7%A6%E4%B8%8B%E8%A7%92%E7%9A%84%E5%80%BC-112%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C-113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C2-106%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91-105%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-代码随想录/第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/">第15天110平衡二叉树，257二叉树的所有路径，404左叶子之和</a>
-    </h1>
-  
-
-        
-        <a href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-15T10:20:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="110平衡二叉树"><a href="#110平衡二叉树" class="headerlink" title="110平衡二叉树"></a>110平衡二叉树</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ug411S7my">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/">题目链接</a></p>
-<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><p>要求比较高度，必然是要后序遍历<br>特殊的是如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了<br>所以单层处理是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(node==NULL) return 0;</span><br><span class="line">int lefthight=getHight(node-&gt;left);</span><br><span class="line">if(lefthight==-1) return -1;</span><br><span class="line">int righthight=getHight(node-&gt;right);</span><br><span class="line">if(righthight==-1) return -1;</span><br></pre></td></tr></table></figure>
-<p>整体代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int getHight(TreeNode* node)&#123;</span><br><span class="line">        if(node==NULL) return 0;</span><br><span class="line">        int lefthight=getHight(node-&gt;left);</span><br><span class="line">        if(lefthight==-1) return -1;</span><br><span class="line">        int righthight=getHight(node-&gt;right);</span><br><span class="line">        if(righthight==-1) return -1;</span><br><span class="line">        int result;</span><br><span class="line">        if(abs(lefthight-righthight)&gt;1) result=-1;</span><br><span class="line">        else&#123;</span><br><span class="line">            </span><br><span class="line">            result = 1 + max(lefthight, righthight);</span><br><span class="line">        &#125;</span><br><span class="line">        //cout&lt;&lt;&quot;node= &quot;&lt;&lt;node-&gt;val&lt;&lt;&quot; result= &quot;&lt;&lt; result;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    bool isBalanced(TreeNode* root) &#123;</span><br><span class="line">        return getHight(root) == -1 ? false : true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="257二叉树的所有路径"><a href="#257二叉树的所有路径" class="headerlink" title="257二叉树的所有路径"></a>257二叉树的所有路径</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZG411G7Dh/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-paths/">题目链接</a></p>
-<h2 id="重点-1"><a href="#重点-1" class="headerlink" title="重点"></a>重点</h2><p>本题要跟节点在子节点前面，适合前序遍历<br>而且本题在遍历到叶子节点的时候，就要进行处理了，把处理结果取出来<br>所以终止条件是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (cur-&gt;left == NULL &amp;&amp; cur-&gt;right == NULL)&#123;</span><br><span class="line">            string res;</span><br><span class="line">            for(int i=0;i&lt;path.size()-1;i++)&#123;</span><br><span class="line">                res+=to_string(path[i]);</span><br><span class="line">                res+=&quot;-&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            res+=to_string(path[path.size()-1]);</span><br><span class="line">            result.push_back(res);</span><br><span class="line">            </span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>单层处理的时候，要回溯，不能一直加节点<br>整体代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void traversal(TreeNode* cur, vector&lt;int&gt;&amp; path, vector&lt;string&gt;&amp; result)&#123;</span><br><span class="line">        //前序遍历</span><br><span class="line">        path.push_back(cur-&gt;val);</span><br><span class="line">        if (cur-&gt;left == NULL &amp;&amp; cur-&gt;right == NULL)&#123;</span><br><span class="line">            string res;</span><br><span class="line">            for(int i=0;i&lt;path.size()-1;i++)&#123;</span><br><span class="line">                res+=to_string(path[i]);</span><br><span class="line">                res+=&quot;-&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            res+=to_string(path[path.size()-1]);</span><br><span class="line">            result.push_back(res);</span><br><span class="line">            </span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if(cur-&gt;left)&#123;</span><br><span class="line">            traversal(cur-&gt;left,path,result);</span><br><span class="line">            path.pop_back();//记得回溯，不能一直加节点</span><br><span class="line">        &#125;</span><br><span class="line">        if(cur-&gt;right) &#123;</span><br><span class="line">            traversal(cur-&gt;right,path,result);</span><br><span class="line">            path.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;string&gt; binaryTreePaths(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        vector&lt;int&gt; path;</span><br><span class="line">        if(root==NULL) return result;</span><br><span class="line">        traversal(root,path,result);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="404左叶子之和"><a href="#404左叶子之和" class="headerlink" title="404左叶子之和"></a>404左叶子之和</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GY4y1K7z8/">视频链接</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-left-leaves/">题目链接</a></p>
-<h2 id="重点-2"><a href="#重点-2" class="headerlink" title="重点"></a>重点</h2><p>重点是左叶子的判断：节点A的左孩子不为空，且左孩子的左右孩子都为空（说明是叶子节点），那么A节点的左孩子为左叶子节点</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (node-&gt;left != NULL &amp;&amp; node-&gt;left-&gt;left == NULL &amp;&amp; node-&gt;left-&gt;right == NULL) &#123;</span><br><span class="line">    左叶子节点处理逻辑</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以用层序做，很好想</p>
-<p>本题特殊在只能在父节点判断左孩子是不是左叶子，父节点就要处理左孩子是不是，是的话就是左孩子的值加上下面两个子节点的左叶子值。不是就返回两个子节点的左叶子值。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if(root==NULL) return 0;</span><br><span class="line">        int leftsum=sumOfLeftLeaves(root-&gt;left);</span><br><span class="line">        int rightsum=sumOfLeftLeaves(root-&gt;right);</span><br><span class="line">        int sum=leftsum+rightsum;</span><br><span class="line">        if (root-&gt;left != NULL &amp;&amp; root-&gt;left-&gt;left == NULL &amp;&amp; root-&gt;left-&gt;right == NULL) &#123;</span><br><span class="line">            sum+=root-&gt;left-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">        return sum;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/12/15/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC15%E5%A4%A9110%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%8C257%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84%EF%BC%8C404%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C/">展开全文 >></a>
         </p>
       
 

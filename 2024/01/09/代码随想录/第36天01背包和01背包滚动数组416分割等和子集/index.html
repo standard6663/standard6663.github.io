@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://standard6663.github.io.git">
-  <title>Archives | Hexo</title>
+  <title>第36天01背包和01背包滚动数组416分割等和子集 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://standard6663.github.io.git/archives/index.html">
+  <meta name="description" content="01背包滚动数组 确定dp数组的定义在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]。  一维dp数组的递推公式dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第36天01背包和01背包滚动数组416分割等和子集">
+<meta property="og:url" content="https://standard6663.github.io.git/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="01背包滚动数组 确定dp数组的定义在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]。  一维dp数组的递推公式dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-09T03:24:03.000Z">
+<meta property="article:modified_time" content="2024-01-09T03:57:37.498Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,305 +154,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-代码随想录/第36天01背包和01背包滚动数组416分割等和子集" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      第36天01背包和01背包滚动数组416分割等和子集
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/" class="archive-article-date">
+
+        
+        <a href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/" class="archive-article-date">
   	<time datetime="2024-01-09T03:24:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/">第36天01背包和01背包滚动数组416分割等和子集</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2024-01-08T02:24:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">第35天● 343. 整数拆分96.不同的二叉搜索树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC34%E5%A4%A962%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%8463%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842/" class="archive-article-date">
-  	<time datetime="2024-01-06T02:37:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/06/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC34%E5%A4%A962%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%8463%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842/">第34天62不同路径63不同路径2</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2024-01-04T02:07:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC32%E5%A4%A9738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91/">第32天738.单调递增的数字968.监控二叉树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC31%E5%A4%A9435%E6%97%A0%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4763%E5%88%92%E5%88%86%E5%AD%97%E6%AF%8D%E5%8C%BA%E9%97%B456%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/" class="archive-article-date">
-  	<time datetime="2024-01-03T05:38:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/03/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC31%E5%A4%A9435%E6%97%A0%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4763%E5%88%92%E5%88%86%E5%AD%97%E6%AF%8D%E5%8C%BA%E9%97%B456%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/">第31天435无重叠区间763划分字母区间56合并区间</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC30%E5%A4%A9860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6406%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" class="archive-article-date">
-  	<time datetime="2024-01-02T02:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC30%E5%A4%A9860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6406%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">第30天860.柠檬水找零406根据身高重建队列452. 用最少数量的箭引爆气球</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2024/01/01/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC29%E5%A4%A91005-K%E6%AC%A1%E5%8F%96%E5%8F%8D%E5%90%8E%E6%9C%80%E5%A4%A7%E5%8C%96%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C134-%E5%8A%A0%E6%B2%B9%E7%AB%99135%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" class="archive-article-date">
-  	<time datetime="2024-01-01T01:19:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2024/01/01/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC29%E5%A4%A91005-K%E6%AC%A1%E5%8F%96%E5%8F%8D%E5%90%8E%E6%9C%80%E5%A4%A7%E5%8C%96%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C134-%E5%8A%A0%E6%B2%B9%E7%AB%99135%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">1005.K次取反后最大化的数组和134. 加油站135分发糖果</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <h1 id="01背包滚动数组"><a href="#01背包滚动数组" class="headerlink" title="01背包滚动数组"></a>01背包滚动数组</h1><ol>
+<li><p>确定dp数组的定义<br>在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]。</p>
+</li>
+<li><p>一维dp数组的递推公式<br>dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。<br>dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包 加上 物品i的价值。（也就是容量为j的背包，放入物品i了之后的价值即：dp[j]）<br>此时dp[j]有两个选择，一个是取自己dp[j] 相当于 二维dp数组中的dp[i-1][j]，即不放物品i，一个是取dp[j - weight[i]] + value[i]，即放物品i，指定是取最大的，毕竟是求最大价值。滚动数组就是把二维数组压缩为1维数组，这里没有[i]这个维度<br>不选就是上一层的d[i-1][j]</p>
+</li>
+<li><p>初始化<br>为0</p>
+</li>
+<li><p>遍历顺序<br>因为背包问题要依赖前面的状态，如果从前到后遍历会重复取物品</p>
+</li>
+</ol>
+<h1 id="416分割等和子集"><a href="#416分割等和子集" class="headerlink" title="416分割等和子集"></a>416分割等和子集</h1><p><a href="">题目链接</a><br><a href="">视频链接</a></p>
+<h2 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h2><ul>
+<li>背包的体积为sum &#x2F; 2</li>
+<li>背包要放入的商品（集合里的元素）重量为 元素的数值，价值也为元素的数值</li>
+<li>背包如果正好装满，说明找到了总和为 sum &#x2F; 2 的子集。</li>
+<li>背包中每一个元素是不可重复放入。</li>
+</ul>
+<p>dp[j] 表示： 容量为j的背包，所背的物品价值最大可以为dp[j]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">bool canPartition(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">       int sum=0;</span><br><span class="line">       for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">           sum+=nums[i];</span><br><span class="line">       &#125;</span><br><span class="line">       if(sum%2==1) return false;</span><br><span class="line">       int target=sum/2;</span><br><span class="line">       vector&lt;int&gt; dp(10001, 0);</span><br><span class="line">       for(int i=0;i&lt;nums.size();i++)&#123;</span><br><span class="line">           for(int j=target;j&gt;=nums[i];j--)&#123;</span><br><span class="line">               dp[j]=max(dp[j],dp[j-nums[i]]+nums[i]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if(dp[target]==target) return true;</span><br><span class="line">       else return false;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC28%E5%A4%A9122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/" class="archive-article-date">
-  	<time datetime="2023-12-30T03:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC28%E5%A4%A9122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/">第28天122.买卖股票的最佳时机II55. 跳跃游戏45.跳跃游戏II</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://standard6663.github.io.git/2024/01/09/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC36%E5%A4%A901%E8%83%8C%E5%8C%85%E5%92%8C01%E8%83%8C%E5%8C%85%E6%BB%9A%E5%8A%A8%E6%95%B0%E7%BB%84416%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="archive-article-date">
-  	<time datetime="2023-12-29T08:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2024/01/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC35%E5%A4%A9%E2%97%8F-343-%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%8696-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第35天● 343. 整数拆分96.不同的二叉搜索树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC27%E5%A4%A9455%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2376%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97-53%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">第27天455分发饼干376摆动序列 53最大子序和</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC26%E5%A4%A9332-%E9%87%8D%E6%96%B0%E5%AE%89%E6%8E%92%E8%A1%8C%E7%A8%8B51N%E7%9A%87%E5%90%8E37%E8%A7%A3%E6%95%B0%E7%8B%AC/" class="archive-article-date">
-  	<time datetime="2023-12-28T06:56:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E7%AC%AC26%E5%A4%A9332-%E9%87%8D%E6%96%B0%E5%AE%89%E6%8E%92%E8%A1%8C%E7%A8%8B51N%E7%9A%87%E5%90%8E37%E8%A7%A3%E6%95%B0%E7%8B%AC/">第26天332.重新安排行程51N皇后37解数独</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -472,8 +343,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
